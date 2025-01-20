@@ -1,0 +1,6 @@
+{
+  "wordpress": true,
+  "WordPressPort": 10011,
+  "WordPressThemeName": "themeName",
+  "fallbackImage": false
+}

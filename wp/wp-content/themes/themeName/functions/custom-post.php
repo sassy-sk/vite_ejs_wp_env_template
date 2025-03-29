@@ -37,6 +37,16 @@ add_action('manage_qa_posts_custom_column', function ($column, $post_id) {
   }
 }, 10, 2);
 
+// 管理画面の投稿一覧を新しい順に並び替え
+function modify_qa_admin_order($query) {
+  // 管理画面のreportタイプの一覧画面の場合のみ
+  if (is_admin() && $query->is_main_query() && $query->get('post_type') === 'qa') {
+      $query->set('orderby', 'date');
+      $query->set('order', 'DESC');
+  }
+}
+add_action('pre_get_posts', 'modify_qa_admin_order');
+
 
 //ACFの項目を一覧画面に表示
 // function add_posts_columns( $columns ) {

@@ -90,6 +90,28 @@ add_filter('custom_menu_order', 'my_custom_menu_order');
 add_filter('menu_order', 'my_custom_menu_order');
 
 
+// 各投稿に大枠の見出しの追加
+function add_events_section_style() {
+  ?>
+  <!-- <style>
+  #adminmenu #menu-posts-post::before {
+    content: "お知らせ";
+    display: block;
+    color: #8c8f94;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 12px 4px 12px;
+    margin: 8px 0 0 0;
+    border-top: 1px solid #3c434a;
+  }
+  </style> -->
+  <?php
+}
+add_action('admin_head', 'add_events_section_style');
+
+
 // サイドメニューのサブメニューを非表示
 // function remove_submenus() {
 //   // 投稿

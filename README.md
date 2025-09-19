@@ -26,7 +26,7 @@
 　　∟ styles.scss ・・・インクルード用SCSS  
 ∟ wp ・・・WordPressテンプレートファイル   
 ∟ public ・・・viteで加工不要のファイル（画像など）  
-∟ buildScript ・・・コマンド実行用ファイル  
+∟ buildScript ・・・build用のnodeファイル  
 ∟ dev.config.json ・・・開発用設定ファイル  
 ∟ vite.config.js ・・・vite設定ファイル  
 ∟ postcss.config.cjs ・・・postcss設定ファイル  
@@ -44,8 +44,8 @@
 - 画像出力について 
 
 ## 使用環境
-- Node.js バージョン14系以上
-- npm バージョン8以上
+- Node.js バージョン14系以上（現状検証してないので不明、とりあえず23.11.0で動作してます）
+- npm バージョン8以上（現状検証してないので不明、とりあえず10.9.2で動作してます）
 - バージョン確認方法：※ターミナル上でコマンドを入力すること
   - `node -v`
   - `npm -v`
@@ -69,7 +69,8 @@
 }
 ```  
 - ビルドした際はjpgやpngをwebpに変換する仕様となります。
-### EJSの場合
+### EJSの場合  
+- ページファイルはhtml拡張子を使用、パーツファイルはejs拡張子を使用してます（viteプラグインの使用上、html拡張子ではないと認識しないため）
 1. dev.config.jsonで`"wordpress": false,`に設定
 2. ターミナルを開く
 3. `npm i`をターミナルへ入力
@@ -77,11 +78,15 @@
 - `npm run build`でファイルを書き出す  
 
 以下仕様に合わせて使い分けてください
-- `npm run build-format`でファイルを書き出しHTMLの整形とcssにパラメーターを付与
+- `npm run build-format`でファイルを書き出しHTMLの整形とcssにパラメーターを付与（デフォだとbuild時にejsコード部分が空白になってしまうので使用）
 - `npm run build-fallback`でファイルを書き出し、再度webpに変換せずに画像を書き出します。フォールバックをつけたい場合はこちらを使用
 - `npm run build-fallback-format`で上記全てを実行  
+#### 注意点 
+- 新規ファイルを作成、画像ファイルを追加した場合などはviteの仕様上か認識しない時があるので、その場合は`npm run dev`を実行しvite再起動を行ってください。（改善思案中）
 
-### WordPressの場合（docker、wp-env使用）
+### WordPressの場合（docker、wp-env使用）  
+- dockerの使用が前提となっているので、事前にdockerをインストールしてください  
+https://www.docker.com/ja-jp/
 1. .wp-env.json：WordPressの設定を確認（WordPressVer. PHPVer. ポートNo. プラグイン）
 2. dev.config.jsonで`"wordpress": true,`に設定し、`WordPressPort`を.wp-env.jsonで設定したポートに合わせる、`WordPressThemeName`を指定  
 3. wp/wp-content/themes/直下のフォルダを`WordPressThemeName`で設定した名前に変更（style.css内記載のテーマ名も変更）  
@@ -110,11 +115,13 @@ chmod +x ./wp-setting.sh
 
 - `npm run build`でscss,js,画像がビルドされます  
 
-以下仕様に合わせて使い分けてください
-- `npm run build-fallback`でファイルを書き出し、再度webpに変換せずに画像を書き出します。フォールバックをつけたい場合はこちらを使用  
+以下用途に合わせて使い分けてください  
+- `npm run restart`でbuildを行い、再度viteを起動します。（build + devと同じ動き）
+- `npm run build-fallback`でファイルを書き出し、再度webpに変換せずに画像を書き出します。画像をwebpだけでなく、jpgやpngとしても使う、フォールバックをつけたい場合はこちらを使用  
  
 
-#### 注意点 
+#### 注意点  
+- 新規ファイルを作成した場合などはviteの仕様上か認識しない時があるので、その場合は`npm run dev`を実行しvite再起動を行ってください。（改善思案中）
 - `functions/script.php`の`define('WORDPRESS_DEV', true);`をtrueで開発サーバー、falseで本番環境のcss、jsを読み込むようにしているのでデプロイ時には必ずfalseにしたフォイルをアップしてください。  
 - 画像はpublicフォルダ内のものはWordPress側では認識されません。画像ファイルを追加した場合は`npm run build`を実行しWordPress本体に画像をコンパイルしてください。
 
@@ -153,7 +160,7 @@ npm run wp-env run cli wp db import sql/wpenv.sql
 
 ## 画像出力について
 
-- 画像効率化の観点よりテンプレートを組んでいますので、以下の様式を使用してください。 （レスポンシブ、webp 対応）
+- 画像効率化の観点よりテンプレートを組んでいますので、以下の様式を使用してください。 （レスポンシブ、webp 対応）（現在あまり使ってません）
 
 EJS
 

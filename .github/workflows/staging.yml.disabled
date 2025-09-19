@@ -34,4 +34,4 @@ jobs:
               username: ${{ secrets.STAGING_USERNAME }}   # FTPのユーザー名名
               password: ${{ secrets.STAGING_PASSWORD }}   # FTPのパスワード
               local-dir: ./dist/                           # アップロードしたいファイルのパス
-              # server-dir: /sassy-make.com/public_html/pf05.sassy-make.com/wp-content/themes/frisodeups/    # アップロード先のリモートパス
+              # server-dir: /.com/public_html/pf05.sassy-make.com/wp-content/themes/frisodeups/    # アップロード先のリモートパス

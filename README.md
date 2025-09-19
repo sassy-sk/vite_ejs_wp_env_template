@@ -1,7 +1,9 @@
 ## ファイルの特徴
 - EJS兼WordPress用vite環境ファイル
+- 最初に必ずdev.config.jsonを編集してejsかWordPressかを設定してください
 - EJSの場合はsrcのejs,scss,jsを編集、distにコンパイルされる
-- WordPressの場合はsrcのscss.jsを編集、wp/wp-content/themes/テーマにコンパイルされる。phpはwp/wp-content/themes/テーマを直接編集
+- WordPressの場合はsrcのscss.jsを編集、wp/wp-content/themes/テーマにコンパイルされる。phpはwp/wp-content/themes/テーマを直接編集  
+- 画像はpublicフォルダに格納、デフォではbuild時にwebpに変換されます。
 - WordPressはdocker及びwp-envを使用する前提で調整しています。docker以外の場合はフォルダ構成を変更する必要があります。
 - GitHubActions自動デプロイ対応
 

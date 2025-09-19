@@ -105,9 +105,7 @@ npm run wp-env start
 ```
 chmod +x ./wp-setting.sh
 ```  
-```
-./wp-setting.sh
-```
+
 
 7. `npm run dev`で開発ブラウザが起動します
 8. WordPressの管理画面（/wp-admin）に入り、テーマを開発中のものに変更（初期ユーザー名`admin`、初期パス`password`）  

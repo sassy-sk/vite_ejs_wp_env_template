@@ -12,6 +12,7 @@
     "WP_DEBUG": true
   },
   "plugins": [
+    "https://downloads.wordpress.org/plugin/advanced-custom-fields.latest-stable.zip",
     "https://downloads.wordpress.org/plugin/wp-multibyte-patch.latest-stable.zip",
     "https://downloads.wordpress.org/plugin/query-monitor.latest-stable.zip",
     "https://downloads.wordpress.org/plugin/custom-post-type-ui.latest-stable.zip",

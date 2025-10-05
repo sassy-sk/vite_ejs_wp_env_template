@@ -1,12 +1,24 @@
 <?php
 // カスタム投稿タイプ設定（配列ベース）
 $custom_post_types = [
-  'real-event' => [
-    'label' => ' リアルイベント',
+  'work' => [
+    'label' => '実績',
     'taxonomies' => [
-      'real-event_category' => 'カテゴリー'
-    ]
-  ]
+      'work_category' => 'カテゴリー'
+    ],
+  ],
+  'recruit' => [
+    'label' => '採用情報',
+    'taxonomies' => [
+      'recruit_category' => 'カテゴリー1',
+      'recruit_special_category' => 'カテゴリー2',
+      'recruit_course_category' => 'カテゴリー3'
+    ],
+    'rewrite' => [
+      'slug' => 'result/recruit',
+      'with_front' => false,
+    ],
+  ],
 ];
 
 // タクソノミー設定（重複登録を防ぐため）
@@ -34,7 +46,8 @@ add_action('init', function () use ($custom_post_types, &$registered_taxonomies)
       ],
       'public' => true,
       'supports' => ['thumbnail', 'title', 'editor', 'excerpt', 'page-attributes'],  //表示する内容
-      'has_archive' => true,  //アーカイブページの作成
+      'has_archive' => isset($config['has_archive']) ? $config['has_archive'] : true,
+      'rewrite' => isset($config['rewrite']) ? $config['rewrite'] : true,
       'hierarchical' => true,  //階層構造（親子関係）の設定ができる　supportsにpage-attributesが必要
       'show_in_rest' => true, //ブロックエディターに対応
     ]);
@@ -91,13 +104,13 @@ foreach ($custom_post_types as $post_type => $config) {
   }
 
   // 管理画面の投稿一覧を新しい順に並び替え
-  add_action('pre_get_posts', function ($query) use ($post_type) {
-    // 管理画面の該当タイプの一覧画面の場合のみ
-    if (is_admin() && $query->is_main_query() && $query->get('post_type') === $post_type) {
-      $query->set('orderby', 'date');
-      $query->set('order', 'DESC');
-    }
-  });
+  // add_action('pre_get_posts', function ($query) use ($post_type) {
+  //   // 管理画面の該当タイプの一覧画面の場合のみ
+  //   if (is_admin() && $query->is_main_query() && $query->get('post_type') === $post_type) {
+  //     $query->set('orderby', 'date');
+  //     $query->set('order', 'DESC');
+  //   }
+  // });
 }
 
 

@@ -204,5 +204,178 @@ WordPress
     ];
     get_template_part('tmp/picture', null, $args);
 ?>
+```  
+
+# wp-env プラグイン再インストール問題の解決方法
+
+## 問題の概要
+
+wp-envで構築したWordPress環境で、管理画面からプラグインを削除した後、再インストールしようとすると以下のエラーが発生する：
+
 ```
+インストールに失敗しました: 移動先ディレクトリはすでに存在するので、削除できませんでした。
+```
+
+## 原因
+
+wp-envはプラグインディレクトリをDockerボリュームとしてマウントしているため、WordPress管理画面から削除しても物理的なファイルが残ってしまうことがある。
+
+## 解決方法
+
+### 方法1: データベースをバックアップして環境を再構築（推奨）
+
+この方法なら、確実にクリーンな状態に戻せる。
+
+#### 1. データベースをエクスポート
+
+```bash
+npm run wp-env run cli wp db export sql/wpenv.sql
+```
+
+#### 2. 環境を破棄
+
+```bash
+npm run wp-env destroy
+```
+
+#### 3. 環境を再起動
+
+```bash
+npm run wp-env start
+```
+
+#### 4. データベースをインポート
+
+```bash
+npm run wp-env run cli wp db import sql/wpenv.sql
+```
+
+#### 5. プラグインを再インストール（.wp-env.jsonのpluginsで設定してある場合はすでにインストールされているので不要）
+
+```bash
+npm run wp-env -- run cli wp plugin install [プラグイン名] --activate
+```
+
+### 方法2: WP-CLIで直接削除してから再インストール
+
+簡単な場合はこちらでも対応可能。
+
+```bash
+# プラグインを削除
+npm run wp-env -- run cli wp plugin delete [プラグイン名]
+
+# 再インストール
+npm run wp-env -- run cli wp plugin install [プラグイン名] --activate
+```
+
+### 方法3: Docker経由で直接削除
+
+環境を壊したくない場合の最終手段。
+
+#### 1. 他のwp-env環境を停止（複数環境がある場合）
+
+```bash
+# 他のプロジェクトで
+npm run wp-env stop
+```
+
+#### 2. コンテナ名を確認
+
+```bash
+docker ps --format "{{.Names}}" | grep wordpress
+```
+
+#### 3. プラグインディレクトリを削除
+
+```bash
+docker exec [コンテナ名] rm -rf /var/www/html/wp-content/plugins/[プラグイン名]
+```
+
+#### 4. 再インストール
+
+```bash
+npm run wp-env -- run cli wp plugin install [プラグイン名] --activate
+```
+
+## 今後の予防策
+
+### プラグインの削除は必ずコマンドで行う
+
+管理画面から削除せず、以下のコマンドを使用する：
+
+```bash
+npm run wp-env -- run cli wp plugin uninstall [プラグイン名] --deactivate
+```
+
+このコマンドなら、物理的なファイルも確実に削除される。
+
+## プラグイン名（スラッグ）の確認方法
+
+WordPress公式ディレクトリのURLから確認できる：
+
+```
+https://ja.wordpress.org/plugins/advanced-custom-fields/
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^
+                                 これがプラグイン名（スラッグ）
+```
+
+## 注意事項
+
+### destroyで消えるもの・消えないもの
+
+#### ❌ 消える（コンテナ内のデータ）
+- データベース（投稿、固定ページ、設定など）
+- コンテナ内にインストールしたプラグイン
+- アップロードしたメディアファイル
+
+#### ✅ 消えない（プロジェクトのファイル）
+- テーマファイル（`page.php`, `functions.php`など）
+- プラグインの開発ファイル
+- `.wp-env.json`などの設定ファイル
+- プロジェクトディレクトリ内の全てのコード
+
+### データベースのエクスポート先について
+
+`sql/wpenv.sql` のようにテーマディレクトリ内にエクスポートすれば、ローカルのプロジェクトフォルダに保存されるため、`destroy` しても消えない。
+
+## よく使うコマンド一覧
+
+```bash
+# 環境の起動・停止
+npm run wp-env start
+npm run wp-env stop
+npm run wp-env destroy
+
+# プラグイン操作
+npm run wp-env -- run cli wp plugin list
+npm run wp-env -- run cli wp plugin install [プラグイン名] --activate
+npm run wp-env -- run cli wp plugin uninstall [プラグイン名] --deactivate
+npm run wp-env -- run cli wp plugin delete [プラグイン名]
+
+# データベース操作
+npm run wp-env -- run cli wp db export [ファイル名.sql]
+npm run wp-env -- run cli wp db import [ファイル名.sql]
+
+# Docker操作
+docker ps | grep wordpress
+docker exec [コンテナ名] [コマンド]
+```
+
+## トラブルシューティング
+
+### `Resource busy` エラーが出る場合
+
+1. wp-envを停止してから再起動
+2. それでもダメなら `destroy` → `start`
+
+### 複数のwp-env環境が動いている場合
+
+他の環境を停止してから作業すると安全：
+
+```bash
+docker ps --format "{{.Names}}" | grep wordpress
+```
+
+で確認し、不要なものは停止する。
+
 # vite_ejs_wp_env_template

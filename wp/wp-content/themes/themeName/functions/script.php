@@ -42,10 +42,13 @@ function my_script_init()
 }
 add_action('wp_enqueue_scripts', 'my_script_init');
 
-// 開発環境用 Viteのscriptタグにtype="module"を追加
-add_filter('script_loader_tag', function ($tag, $handle) {
-	if (in_array($handle, ['vite-js', 'vite-client'])) {
-		return str_replace('<script ', '<script type="module" ', $tag);
-	}
-	return $tag;
-}, 10, 2);
+
+if (WORDPRESS_DEV) {
+	// 開発環境用 Viteのscriptタグにtype="module"を追加
+	add_filter('script_loader_tag', function ($tag, $handle) {
+		if (in_array($handle, ['vite-js', 'vite-client'])) {
+			return str_replace('<script ', '<script type="module" ', $tag);
+		}
+		return $tag;
+	}, 10, 2);
+}

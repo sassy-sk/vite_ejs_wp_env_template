@@ -1,18 +1,7 @@
 <?php get_header(); ?>
-
-<div class="test">
-
-  <div class="l-inner">
+<main>
+  <div class="siteWrapper">
     
-    <div style="padding-top:50px;"></div>
-    <a href="" class="c-btn-angle">
-      <span>News Release</span>
-      <span>ニュースリリース</span>
-    </a>
-    
-  </div>  <?php /* l-inner */?>
-
-</div>
-
-
+  </div>
+</main>
 <?php get_footer(); ?>

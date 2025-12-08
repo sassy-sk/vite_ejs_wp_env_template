@@ -11,9 +11,7 @@
   font-size: rem(14);
   line-height: calc(26 / 14);
   min-height: rem(40);
-  border-bottom: solid 1px;
-  border-left: solid 1px;
-  border-right: solid 1px;
+  border: solid 1px;
   cursor: pointer;
   transition: background var(--duration);
 
@@ -27,6 +25,7 @@
     width: rem(9);
     height: rem(7);
     background: currentColor;
+    transition: transform var(--duration);
   }
 
   &::-webkit-details-marker {
@@ -53,8 +52,7 @@
 }
 
 .c-details[open] {
-  .c-details__btn {
-    opacity: 0;
-    pointer-events: none;
+  .c-details__btn::after {
+    transform: rotate(180deg);
   }
 }

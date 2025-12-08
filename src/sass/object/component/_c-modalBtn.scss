@@ -1,6 +1,11 @@
 @use "../../global" as *;
 
-.c-panel {
+.c-modalBtnWrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(#{rem(300)}, 1fr));
+  gap: rem(20);
+}
+.c-modalBtn {
   display: block;
   background: var(--white);
   border: 3px solid var(--base-color);
@@ -27,14 +32,14 @@
   }
 }
 
-.c-panel__img {
+.c-modalBtn__img {
   width: min(126px, 100%);
 
   @include mq(md) {
     width: min(100px, 100%);
   }
 }
-.c-panel__text {
+.c-modalBtn__text {
   display: block;
   width: 100%;
   font-size: rem(19);

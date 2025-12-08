@@ -1,0 +1,45 @@
+@use '../../global' as * ; 
+
+.c-listWrap {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.c-list {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: span 2;
+  align-items: center;
+  gap: 0 10px;
+
+  @include mq(md) {
+    grid-column: span 1;
+  }
+}
+
+.c-list__meta {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 10px;
+}
+
+.c-list__body {
+  grid-column:  2;
+}
+
+.c-list__time {
+  font-size: rem(12);
+}
+
+.c-list__category {
+  font-size: rem(12);
+}
+
+.c-list__title {
+  font-size: rem(16);
+}

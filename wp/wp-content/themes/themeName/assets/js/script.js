@@ -33,7 +33,7 @@ if (jsPageTopBtn) {
 }
 let jsHeader = document.querySelector(".js-header");
 let jsHeaderTarget = document.querySelector(".js-headerTarget");
-if (jsHeader) {
+if (jsHeader && jsHeaderTarget) {
   let getScrolled = function() {
     return window.pageYOffset !== void 0 ? window.pageYOffset : document.documentElement.scrollTop;
   };
@@ -72,21 +72,33 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 document.addEventListener("DOMContentLoaded", function() {
-  const firstTarget = document.querySelector(".js-tab-panel");
-  if (firstTarget) {
-    firstTarget.classList.add("is_active");
-  }
-});
-const tabs = document.querySelectorAll(".js-tab");
-tabs.forEach((tab, index) => {
-  tab.addEventListener("click", () => {
-    const targets = document.querySelectorAll(".js-tab-panel");
-    tabs.forEach((t) => t.classList.remove("is_active"));
-    tab.classList.add("is_active");
-    targets.forEach((target) => {
-      target.classList.remove("is_active");
+  const tabs = document.querySelectorAll(".js-tab");
+  tabs.forEach((tab) => {
+    const tabBtns = tab.querySelectorAll(".js-tabBtn");
+    const tabPanels = tab.querySelectorAll(".js-tab-panel");
+    if (tabBtns.length > 0 && tabPanels.length > 0) {
+      tabBtns[0].classList.add("is_active");
+      tabBtns[0].setAttribute("aria-expanded", "true");
+      tabPanels[0].classList.add("is_active");
+    }
+    tabBtns.forEach((btn) => {
+      btn.addEventListener("click", function() {
+        const targetTab = this.getAttribute("data-tab");
+        tabBtns.forEach((b) => {
+          b.classList.remove("is_active");
+          b.setAttribute("aria-expanded", "false");
+        });
+        tabPanels.forEach((p) => {
+          p.classList.remove("is_active");
+        });
+        this.classList.add("is_active");
+        this.setAttribute("aria-expanded", "true");
+        const targetPanel = tab.querySelector(`[data-tab-panel="${targetTab}"]`);
+        if (targetPanel) {
+          targetPanel.classList.add("is_active");
+        }
+      });
     });
-    targets[index].classList.add("is_active");
   });
 });
 function initializeSmoothScroll() {
@@ -268,6 +280,12 @@ if (document.querySelector(".js_accordion")) {
           answer.animate(openingAnimation(answer), animTiming);
         }
       });
+      const close = el.querySelector(".js_accordion__close");
+      if (close) {
+        close.addEventListener("click", () => {
+          closeAccordion(el, answer);
+        });
+      }
     });
   });
   const animTiming = {
@@ -294,4 +312,210 @@ if (document.querySelector(".js_accordion")) {
       opacity: 1
     }
   ];
+}
+let fields = [
+  // タイトル入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputTitle"),
+    confirm: document.querySelector(".js_confirmTitle")
+  },
+  // 名前入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputName"),
+    confirm: document.querySelector(".js_confirmName")
+  },
+  // ふりがな入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputRuby"),
+    confirm: document.querySelector(".js_confirmRuby")
+  },
+  // メール入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputEmail"),
+    confirm: document.querySelector(".js_confirmMail")
+  },
+  // メール確認入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputEmailConfirm"),
+    confirm: document.querySelector(".js_confirmMailConfirm")
+  },
+  // 会社入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputCompany"),
+    confirm: document.querySelector(".js_confirmCompany")
+  },
+  // 部門入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputDepartment"),
+    confirm: document.querySelector(".js_confirmDepartment")
+  },
+  // TEL入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputTel"),
+    confirm: document.querySelector(".js_confirmTel")
+  },
+  // 郵便番号入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputZip"),
+    confirm: document.querySelector(".js_confirmZip")
+  },
+  // 住所入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputAddress"),
+    confirm: document.querySelector(".js_confirmAddress")
+  },
+  // お問い合わせ入力欄・確認欄
+  {
+    input: document.querySelector(".js_inputTextArea"),
+    confirm: document.querySelector(".js_confirmTextArea")
+  }
+];
+let confirmTop = document.querySelector(".js_confirmTop");
+let inputArea = document.querySelectorAll(".js_inputArea");
+let radioButtons = document.querySelectorAll(
+  '.js_inputRadio input[type="radio"]'
+);
+let checkboxes = document.querySelectorAll(
+  '.js_inputCheck input[type="checkbox"]'
+);
+let inputSelect = document.querySelector(".js_inputSelect");
+let btnConfirm = document.querySelector(".js_btnConfirm");
+let inputAgree = document.querySelector(
+  ".formAgree__item"
+);
+let confirmArea = document.querySelectorAll(".js_confirmArea");
+let confirmRadio = document.querySelector(".js_confirmRadio");
+let confirmCheck = document.querySelector(".js_confirmCheck");
+let confirmSelect = document.querySelector(".js_confirmSelect");
+document.querySelector(".js_confirmAgree");
+let btnRemove = document.querySelector(".js_confirmRemove");
+if (fields && fields.length > 0) {
+  fields.forEach(function(field) {
+    if (field.input && field.confirm) {
+      field.input.addEventListener("input", function() {
+        if (field.input.type === "textarea") {
+          field.confirm.innerHTML = field.input.value.replace(/\n/g, "<br>");
+        } else {
+          field.confirm.textContent = field.input.value;
+        }
+      });
+    }
+  });
+}
+if (radioButtons.length > 0) {
+  let updateConfirmRadio = function() {
+    const selectedRadio = [...radioButtons].find((radio) => radio.checked);
+    confirmRadio.textContent = selectedRadio ? selectedRadio.value : "";
+  };
+  var updateConfirmRadio2 = updateConfirmRadio;
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("change", updateConfirmRadio);
+  });
+  updateConfirmRadio();
+}
+if (checkboxes.length > 0) {
+  let updateConfirmCheck = function() {
+    let selectedValues = Array.from(checkboxes).filter(function(checkbox) {
+      return checkbox.checked;
+    }).map(function(checkbox) {
+      return checkbox.nextElementSibling.textContent;
+    });
+    confirmCheck.textContent = selectedValues.join(", ");
+  };
+  var updateConfirmCheck2 = updateConfirmCheck;
+  checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener("change", updateConfirmCheck);
+  });
+  updateConfirmCheck();
+}
+if (inputSelect) {
+  inputSelect.addEventListener("change", function() {
+    let selectedOption = inputSelect.options[inputSelect.selectedIndex];
+    confirmSelect.textContent = selectedOption.text;
+  });
+}
+if (inputAgree) {
+  btnConfirm.disabled = true;
+  inputAgree.addEventListener("change", function() {
+    if (inputAgree.checked) {
+      btnConfirm.disabled = false;
+    } else {
+      btnConfirm.disabled = true;
+    }
+  });
+}
+function createOverlay() {
+  let overlay2 = document.createElement("div");
+  overlay2.className = "overlay";
+  overlay2.style.position = "fixed";
+  overlay2.style.top = "0";
+  overlay2.style.left = "0";
+  overlay2.style.width = "100%";
+  overlay2.style.height = "100%";
+  overlay2.style.backgroundColor = "rgba(255, 255, 255, 1)";
+  overlay2.style.display = "none";
+  overlay2.style.transition = "opacity .5s";
+  overlay2.style.zIndex = "100";
+  document.body.appendChild(overlay2);
+  return overlay2;
+}
+let overlay = createOverlay();
+if (btnConfirm) {
+  btnConfirm.addEventListener("click", function() {
+    confirmArea.forEach(function(area) {
+      area.style.display = "flex";
+    });
+    inputArea.forEach(function(area) {
+      area.style.display = "none";
+    });
+    overlay.style.display = "block";
+    overlay.style.opacity = "1";
+    setTimeout(function() {
+      overlay.style.opacity = "0";
+      setTimeout(function() {
+        overlay.style.display = "none";
+      }, 500);
+    }, 500);
+    const headerHeight = 200;
+    const topPosition = confirmTop.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+    window.scrollTo({
+      top: topPosition
+      // behavior: 'smooth'
+    });
+  });
+}
+if (btnRemove) {
+  btnRemove.addEventListener("click", function() {
+    confirmArea.forEach(function(area) {
+      area.style.display = "none";
+    });
+    inputArea.forEach(function(area) {
+      area.style.display = "block";
+    });
+    overlay.style.display = "block";
+    overlay.style.opacity = "1";
+    setTimeout(function() {
+      overlay.style.opacity = "0";
+      setTimeout(function() {
+        overlay.style.display = "none";
+      }, 500);
+    }, 500);
+    const headerHeight = 200;
+    const topPosition = confirmTop.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+    window.scrollTo({
+      top: topPosition
+      // behavior: 'smooth'
+    });
+  });
+}
+document.addEventListener(
+  "wpcf7mailsent",
+  function(event) {
+    location = "./thanks/";
+  },
+  false
+);
+if (document.querySelector(".js_inputZip")) {
+  const zipNumber = document.querySelector(".js_inputZip");
+  zipNumber.setAttribute("inputmode", "numeric");
 }

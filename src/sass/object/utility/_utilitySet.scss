@@ -2,9 +2,8 @@
 
 //768px以上非表示
 .sp_only {
-  display: none;
-  @include mq("md") {
-    display: block;
+  @include mq("mdOut") {
+    display: none;
   }
 }
 
@@ -13,6 +12,26 @@
   @include mq("md") {
     display: none;
   }
+}
+
+/*============================
+サイト全体レイアウト
+============================*/
+body {
+  display: grid;
+  grid-template: "header" auto "contents" 1fr "footer" auto/100%;
+  min-height: 100vh;
+  // モダール展開時背面コンテンツのスクロールバーの有無で開閉時に背面レイアウトのガタツキ防止
+  overflow-y: scroll; /* 常にスクロールバーを表示 */
+}
+header {
+  grid-area: header;
+}
+main {
+  grid-area: contents;
+}
+footer {
+  grid-area: footer;
 }
 
 /* ドロワーメニュー展開時背景固定 */
@@ -26,10 +45,6 @@ body:has(dialog[open]) {
   overflow: hidden;
 }
 
-// モダール展開時背面コンテンツのスクロールバーの有無で開閉時に背面レイアウトのガタツキ防止
-body {
-  overflow-y: scroll; /* 常にスクロールバーを表示 */
-}
 .siteWrapper:has(dialog[open]) {
   overflow-y: auto;
   scrollbar-gutter: stable; /* スクロールバーのスペースを常に確保する */

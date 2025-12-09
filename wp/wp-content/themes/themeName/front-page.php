@@ -5,7 +5,7 @@
     <div class="test">
       <div class="l-inner">
 
-        <img src="<?= my_image_path() ?>common/noImg.webp" alt="">
+        <img src="<?= image_path_webp('common/noImg.jpg') ?>" alt="">
 
         <hr />
 
@@ -81,31 +81,31 @@
         <?php $modals = [
           [
             'target' => 'modal01',
-            'btnImg' => 'common/noImg.webp',
+            'btnImg' => 'common/noImg.jpg',
             'btnAlt' => 'モーダルボタン画像',
             'btnText' => 'モーダルボタンテキスト01',
             'modalTitle' => 'モーダルタイトル01',
-            'modalImg' => 'common/noImg.webp',
+            'modalImg' => 'common/noImg.jpg',
             'modalAlt' => 'モーダル画像',
             'modalText' => 'モーダルテキスト01',
           ],
           [
             'target' => 'modal02',
-            'btnImg' => 'common/noImg.webp',
+            'btnImg' => 'common/noImg.jpg',
             'btnAlt' => 'モーダルボタン画像',
             'btnText' => 'モーダルボタンテキスト02',
             'modalTitle' => 'モーダルタイトル02',
-            'modalImg' => 'common/noImg.webp',
+            'modalImg' => 'common/noImg.jpg',
             'modalAlt' => 'モーダル画像',
             'modalText' => 'モーダルテキスト02',
           ],
           [
             'target' => 'modal03',
-            'btnImg' => 'common/noImg.webp',
+            'btnImg' => 'common/noImg.jpg',
             'btnAlt' => 'モーダルボタン画像',
             'btnText' => 'モーダルボタンテキスト03',
             'modalTitle' => 'モーダルタイトル03',
-            'modalImg' => 'common/noImg.webp',
+            'modalImg' => 'common/noImg.jpg',
             'modalAlt' => 'モーダル画像',
             'modalText' => 'モーダルテキスト03',
           ],
@@ -114,7 +114,7 @@
           <?php foreach ($modals as $modal) : ?>
             <button class="c-modalBtn" data-modal-open="<?= $modal['target'] ?>">
               <span class="c-modalBtn__img">
-                <img src="<?= my_image_path() . $modal['btnImg'] ?>" alt="<?= $modal['btnAlt'] ?>">
+                <img src="<?= image_path_webp($modal['btnImg']) ?>" alt="<?= $modal['btnAlt'] ?>">
               </span>
               <span class="c-modalBtn__text"><?= $modal['btnText'] ?></span>
             </button>
@@ -122,7 +122,7 @@
               <div class="c-modal__container js-modalContainer">
                 <div class="c-modal__inner">
                   <div class="c-modal__img">
-                    <img src="<?= my_image_path() . $modal['modalImg'] ?>" alt="<?= $modal['modalAlt'] ?>">
+                    <img src="<?= image_path_webp($modal['modalImg']) ?>" alt="<?= $modal['modalAlt'] ?>">
                   </div>
                   <div class="c-modal__head">
                     <p id="<?= $modal['modalTitle'] ?>" class="c-modal__title"><?= $modal['modalTitle'] ?></p>

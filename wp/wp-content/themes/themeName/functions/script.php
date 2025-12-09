@@ -8,6 +8,7 @@
 
 //localhostの場合のみ開発モードを有効にする
 define('WORDPRESS_DEV', in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1', 'localhost:8080', 'localhost:3000']) || strpos($_SERVER['HTTP_HOST'], 'localhost:') === 0);
+// define('WORDPRESS_DEV', false);
 
 function my_script_init()
 {

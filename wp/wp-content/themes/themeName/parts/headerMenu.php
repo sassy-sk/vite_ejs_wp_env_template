@@ -5,13 +5,13 @@
     <?php if (is_front_page()) : ?>
       <h1 class="p-header__logo">
         <a href="<?php echo $urls['top']; ?>">
-          <img class="logo" src="<?php echo my_image_path(); ?>common/logo_black.svg" alt="">
+          <img class="logo" src="<?php echo image_path_webp('common/logo_black.svg'); ?>" alt="">
         </a>
       </h1>
     <?php else : ?>
       <div class="p-header__logo">
         <a href="<?php echo $urls['top']; ?>">
-          <img class="logo" src="<?php echo my_image_path(); ?>common/logo_black.svg" alt="">
+          <img class="logo" src="<?php echo image_path_webp('common/logo_black.svg'); ?>" alt="">
         </a>
       </div>
     <?php endif; ?>

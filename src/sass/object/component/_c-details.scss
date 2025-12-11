@@ -21,6 +21,7 @@
 
   &::after {
     content: '';
+    display: block;
     display: inline-block;
     width: rem(9);
     height: rem(7);

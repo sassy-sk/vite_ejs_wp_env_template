@@ -26,15 +26,19 @@ function my_script_init()
 		wp_enqueue_script('vite-client', 'http://localhost:3200/@vite/client', [], null, false);
 		wp_enqueue_style('vite-css', 'http://localhost:3200/sass/styles.scss', [], null);
 		wp_enqueue_script('vite-js', 'http://localhost:3200/js/script.js', [], null, true);
+		// Ajax URLをJavaScriptに渡す
+		// wp_localize_script('vite-js', 'wpAjax', array(
+		// 	'ajaxurl' => admin_url('admin-ajax.php')
+		// ));
 	} else {
 		//本番環境ではビルドされたアセットを読み込む
 		wp_enqueue_style('my-css', get_template_directory_uri() . '/assets/css/styles.css', array(), filemtime(get_template_directory() . '/assets/css/styles.css'), 'all');
 		wp_enqueue_script('my-js', get_template_directory_uri() . '/assets/js/script.js', array(), '1.0.1', true);
+		// Ajax URLをJavaScriptに渡す
+		// wp_localize_script('my-js', 'wpAjax', array(
+		// 	'ajaxurl' => admin_url('admin-ajax.php')
+		// ));
 	}
-	// Ajax URLをJavaScriptに渡す
-	// wp_localize_script('my-js', 'wpAjax', array(
-	// 	'ajaxurl' => admin_url('admin-ajax.php')
-	// ));
 }
 add_action('wp_enqueue_scripts', 'my_script_init');
 

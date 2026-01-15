@@ -6,9 +6,8 @@
  * @codex https://wpdocs.osdn.jp/%E3%83%8A%E3%83%93%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC
  */
 
-//localhostの場合のみ開発モードを有効にする
-define('WORDPRESS_DEV', in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1', 'localhost:8080', 'localhost:3000']) || strpos($_SERVER['HTTP_HOST'], 'localhost:') === 0);
-// define('WORDPRESS_DEV', false);
+// フラグファイルがある場合のみ開発モードを有効にする
+define('WORDPRESS_DEV', file_exists(get_template_directory() . '/.dev'));
 
 function my_script_init()
 {

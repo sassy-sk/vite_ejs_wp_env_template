@@ -20,3 +20,6 @@ node_modules
 *.njsproj
 *.sln
 *.sw?
+
+# 開発モードフラグファイル（ローカルのみ）
+wp/wp-content/themes/*/.dev

@@ -9,7 +9,8 @@
     }
   },
   "config": {
-    "WP_DEBUG": true
+    "WP_DEBUG": true,
+    "WP_ENVIRONMENT_TYPE": "local"
   },
   "plugins": [
     "https://downloads.wordpress.org/plugin/advanced-custom-fields.latest-stable.zip",

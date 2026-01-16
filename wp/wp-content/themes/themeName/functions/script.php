@@ -6,8 +6,8 @@
  * @codex https://wpdocs.osdn.jp/%E3%83%8A%E3%83%93%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC
  */
 
-// フラグファイルがある場合のみ開発モードを有効にする
-define('WORDPRESS_DEV', file_exists(get_template_directory() . '/.dev'));
+// config WP_ENVIRONMENT_TYPE が local の場合のみ開発モード
+define('WORDPRESS_DEV', wp_get_environment_type() === 'local');
 
 function my_script_init()
 {

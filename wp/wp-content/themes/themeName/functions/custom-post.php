@@ -45,7 +45,7 @@ add_action('init', function () use ($custom_post_types, &$registered_taxonomies)
         'not_found_in_trash' => 'ゴミ箱に' . $config['label'] . 'はありません',
       ],
       'public' => true,
-      'supports' => ['thumbnail', 'title', 'editor', 'excerpt', 'page-attributes'],  //表示する内容
+      'supports' => ['thumbnail', 'title', 'editor', 'excerpt', 'page-attributes', 'revisions'],  //表示する内容
       'has_archive' => isset($config['has_archive']) ? $config['has_archive'] : true,
       'rewrite' => isset($config['rewrite']) ? $config['rewrite'] : true,
       'hierarchical' => true,  //階層構造（親子関係）の設定ができる　supportsにpage-attributesが必要

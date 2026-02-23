@@ -40,6 +40,7 @@ body:has(.c-hamburger[aria-expanded="true"]){
     overflow: hidden;
   }
 }
+
 // モーダル展開時背景固定
 body:has(dialog[open]) {
   overflow: hidden;

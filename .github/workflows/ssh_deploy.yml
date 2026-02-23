@@ -1,5 +1,7 @@
 name: Staging Deploy
-
+# SSH接続デプロイ
+# サーバー側にrsyncがインストールされている必要あり
+# rsync --version
 on:
   push:
     branches: [main]

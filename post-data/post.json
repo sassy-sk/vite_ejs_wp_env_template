@@ -1,0 +1,16 @@
+{
+  "config": {
+    "post_type": "post",
+    "taxonomy": "category",
+    "thumbnail": "https://picsum.photos/seed/news/800/600"
+  },
+  "posts": [
+    {
+      "title": "お知らせサンプル",
+      "excerpt": "お知らせの抜粋です。",
+      "content": "<p>お知らせ本文です。</p>",
+      "category_slug": "news",
+      "thumbnail": true
+    }
+  ]
+}

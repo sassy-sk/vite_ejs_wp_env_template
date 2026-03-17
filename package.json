@@ -11,7 +11,8 @@
     "format": "prettier --write 'dist/**/*.html' 'dist/*.html' && find dist -type f -name '*.html' -exec sed -i '' '/^$/d' {} + && node buildScript/cacheTimestamp.js",
     "build-format": "npm run build && npm run format",
     "build-fallback": "npm run build && node buildScript/fallbackImage.js true && npm run build && node buildScript/fallbackImage.js false",
-    "build-fallback-format": "npm run build-fallback && npm run format"
+    "build-fallback-format": "npm run build-fallback && npm run format",
+    "wp-post:create": "node scripts/create-posts.js"
   },
   "devDependencies": {
     "@wordpress/env": "^10.16.0",

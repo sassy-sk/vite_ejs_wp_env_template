@@ -1,0 +1,66 @@
+# name: Production Deploy
+# # SSH接続デプロイ（本番環境）
+# # サーバー側にrsyncがインストールされている必要あり
+# # rsync --version
+# # 事前準備: ssh-keyscan -H <サーバーIP> を実行し、出力をPROD_KNOWN_HOSTSとしてSecretsに登録
+
+# on:
+#   push:
+#     branches: [main] # mainへのマージで本番デプロイ
+#     paths: # テーマ名を変更した場合は下記も変更すること（env.THEME_NAMEは反映されないため）
+#       - 'wp/wp-content/themes/themeName/**'
+#       - 'src/**'
+#       - 'public/**'
+#   workflow_dispatch:
+#     inputs:
+#       dry_run:
+#         description: 'Dry run only（差分確認のみ、実際のデプロイは行わない）'
+#         type: boolean
+#         default: false
+
+# concurrency:
+#   group: production-deploy
+#   cancel-in-progress: false
+
+# env:
+#   THEME_NAME: themeName # テーマ名をここで管理
+
+# jobs:
+#   deploy:
+#     name: Deploy
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 15
+
+#     steps:
+#       - name: Get latest code
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 1
+
+#       - name: Use Node.js 22 (LTS)
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: '22'
+#           cache: 'npm'
+
+#       - name: Install dependencies and build
+#         run: |
+#           npm ci
+#           npm run build
+
+#       - name: Setup SSH key
+#         uses: shimataro/ssh-key-action@v2
+#         with:
+#           key: ${{ secrets.PROD_SSH_KEY }}
+#           known_hosts: ${{ secrets.PROD_KNOWN_HOSTS }} # 事前検証済みfingerprint
+
+#       - name: Deploy via rsync
+#         run: |
+#           DRY_RUN_FLAG=""
+#           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+#             DRY_RUN_FLAG="--dry-run"
+#             echo "::notice::Dry run mode（実際のデプロイは行いません）"
+#           fi
+#           rsync -avz --delete $DRY_RUN_FLAG \
+#             ./wp/wp-content/themes/${{ env.THEME_NAME }}/ \
+#             ${{ secrets.PROD_SSH_USER }}@${{ secrets.PROD_SSH_HOST }}:/bitnami/wordpress/wp-content/themes/${{ env.THEME_NAME }}/

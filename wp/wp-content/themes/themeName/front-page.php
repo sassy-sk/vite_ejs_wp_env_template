@@ -154,4 +154,9 @@
 
   </div>
 </main>
+
+<script>
+  console.log('ssh_deploy01');
+</script>
+
 <?php get_footer(); ?>

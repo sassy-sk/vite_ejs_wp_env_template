@@ -1,5 +1,5 @@
 // ----------------------
-// アコーディオン aria-expanded
+// アコーディオン grid aria-expanded
 // ----------------------
 // ボタン要素にaria-expandedを設定、展開する要素にaria-hiddenを設定
 // css；展開する要素に以下を設定
@@ -26,7 +26,7 @@ if (document.querySelector('.js-accordion__btn')) {
 }
 
 // ----------------------
-// アコーディオン
+// アコーディオン details
 // ----------------------
 if (document.querySelector('.js_accordion')) {
   document.addEventListener('DOMContentLoaded', () => {
@@ -49,13 +49,13 @@ if (document.querySelector('.js_accordion')) {
         }
       });
       // 閉じるボタンが別にある時の処理
-      // const close = el.querySelector(".js_accordion__close");
-      // if (close) {
-      //   close.addEventListener('click', () => {
-      //     // アコーディオンを閉じる処理
-      //     closeAccordion(el, answer);
-      //   });
-      // }
+      const close = el.querySelector(".js_accordion__close");
+      if (close) {
+        close.addEventListener('click', () => {
+          // アコーディオンを閉じる処理
+          closeAccordion(el, answer);
+        });
+      }
     });
   });
 

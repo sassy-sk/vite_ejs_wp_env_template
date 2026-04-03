@@ -1,0 +1,18 @@
+<dialog id="<%- target  %>" class="c-modal js-modalDialog" aria-labelledby="<%- modalTitle  %>" aria-describedby="<%- modalDesc  %>" autofocus>
+  <div class="c-modal__container js-modalContainer">
+    <div class="c-modal__inner">
+      <div class="c-modal__img">
+        <img src="<%- img %>" alt="<%- alt %>">
+      </div>
+      <div class="c-modal__head">
+        <p id="<%- modalTitle  %>" class="c-modal__title"><%- title  %></p>
+      </div>
+      <div class="c-modal__body">
+        <p id="<%- modalDesc  %>" class="c-modal__text c-text">
+          <%- text  %>
+        </p>
+      </div>
+      <button class="c-modal__close" type="button" aria-label="モーダルを閉じる" data-modal-close></button>
+    </div>
+  </div>
+</dialog>

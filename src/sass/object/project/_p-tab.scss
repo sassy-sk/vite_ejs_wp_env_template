@@ -1,0 +1,19 @@
+@use '../../global' as * ; 
+
+.p-tab {
+
+}
+
+.p-tab__head {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(rem(200), 1fr));
+  gap: rem(20);
+}
+
+.p-tab__body {
+  margin-block-start: rem(50);
+}
+
+.p-tab__panel:not(.is_active) {
+  display: none;
+}

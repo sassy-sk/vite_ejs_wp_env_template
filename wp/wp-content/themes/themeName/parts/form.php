@@ -145,8 +145,8 @@
     </div>
     
     <div class="form__content form__contentButton">
-      <input class="formBtn js_btnConfirm js_inputArea" type="button" value="確認">
-      <input class="formBtn is_confirm js_confirmArea js_confirmRemove" type="button" value="戻る">
+      <input class="formBtn is_confirm js_btnConfirm js_inputArea" type="button" value="確認">
+      <input class="formBtn is_remove js_confirmArea js_confirmRemove" type="button" value="戻る">
       <input class="formBtn js_confirmArea" type="submit" value="送信">
     </div>
 

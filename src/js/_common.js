@@ -16,10 +16,9 @@ if (jsPageTopBtn) {
 // ----------------------
 let jsHeader = document.querySelector('.js-header');
 let jsHeaderTarget = document.querySelector('.js-headerTarget');
-if (jsHeader) {
+if (jsHeader && jsHeaderTarget) {
   function getScrolled() {
     return window.pageYOffset !== undefined ? window.pageYOffset : document.documentElement.scrollTop;
-    jsHeaderTarget.offsetTop;
   }
   window.onscroll = function () {
     getScrolled() > jsHeaderTarget.offsetTop ? jsHeader.classList.add('is-active') : jsHeader.classList.remove('is-active');

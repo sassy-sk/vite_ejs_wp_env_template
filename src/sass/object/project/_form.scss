@@ -1,15 +1,18 @@
 @use '../../global' as *;
 
-$formBorderColor: transparent;
-$formRequiredColor: #f44949;
-$formOutLineColor: #007bff;
-$formRadioCheckColor: #222;
-$formCheckBoxColor: #007bff;
-$formAgreeColorColor: #0f0102;
-$formSubmitHoverColor: #007bff;
-$formDisableColor: #ccc;
-$formConfirmColor: #fff;
-$formInputHeight: rem(50);
+:root {
+  --form-border-color: #ccc;
+  --form-required-color: #f44949;
+  --form-out-line-color: #007bff;
+  --form-radio-check-color: #222;
+  --form-check-box-color: #007bff;
+  --form-agree-color-color: #0f0102;
+  --form-submit-hover-color: #007bff;
+  --form-disable-color: #ccc;
+  --form-confirm-color: #007bff;
+  --form-remove-color: #ccc;
+  --form-input-height: rem(50);
+}
 
 // フォームレイアウト
 .form {
@@ -97,7 +100,7 @@ $formInputHeight: rem(50);
   font-size: rem(16);
   line-height: calc(30 / 16);
   letter-spacing: 0.1em;
-  min-height: $formInputHeight;
+  min-height: var(--form-input-height);
   display: flex;
   align-items: center;
 }
@@ -107,7 +110,7 @@ $formInputHeight: rem(50);
   font-weight: bold;
   letter-spacing: 0.1em;
   line-height: 1;
-  color: $formRequiredColor;
+  color: var(--form-required-color);
   background: currentColor;
   min-width: rem(60);
   min-height: rem(30);
@@ -146,16 +149,16 @@ $formInputHeight: rem(50);
   appearance: none;
   background-color: var(--white);
   background-image: none;
-  border: 1px solid $formBorderColor;
+  border: 1px solid var(--form-border-color);
   color: inherit;
   font-family: inherit;
   font-size: rem(16);
   padding: rem(8) rem(8);
-  min-height: $formInputHeight;
+  min-height: var(--form-input-height);
   width: 100%;
 
   &:focus {
-    outline: 2px solid $formOutLineColor;
+    outline: 2px solid var(--form-out-line-color);
     box-shadow: none;
   }
   &::placeholder {
@@ -174,7 +177,7 @@ $formInputHeight: rem(50);
   flex-direction: row;
   padding-left: rem(10);
   gap: rem(5) rem(10);
-  min-height: $formInputHeight;
+  min-height: var(--form-input-height);
 
   > p {
     display: contents;
@@ -210,7 +213,7 @@ $formInputHeight: rem(50);
   }
 
   input[type='radio']:focus-visible + span {
-    outline: 2px solid $formRequiredColor;
+    outline: 2px solid var(--form-required-color);
   }
 
   input[type='radio'] + span {
@@ -237,7 +240,7 @@ $formInputHeight: rem(50);
 
   input[type='radio'] + span::after {
     -webkit-transform: translateY(-50%);
-    background: $formRadioCheckColor;
+    background: var(--form-radio-check-color);
     border: 1px solid transparent;
     border-radius: 50%;
     content: '';
@@ -259,14 +262,14 @@ $formInputHeight: rem(50);
 
 //セレクトボタン
 .formSelect {
-  border: 1px solid $formBorderColor;
+  border: 1px solid var(--form-border-color);
   font-size: rem(16);
   padding: rem(5) rem(10);
   width: fit-content;
   max-width: 100%;
 
   &:focus {
-    outline: 2px solid $formOutLineColor;
+    outline: 2px solid var(--form-out-line-color);
     box-shadow: none;
   }
   &::placeholder {
@@ -284,7 +287,7 @@ $formInputHeight: rem(50);
   appearance: none;
   background-color: #fff;
   background-image: none;
-  border: 1px solid $formBorderColor;
+  border: 1px solid var(--form-border-color);
   border-radius: 5px;
   color: inherit;
   font-size: rem(16);
@@ -295,7 +298,7 @@ $formInputHeight: rem(50);
   // resize: none;
 
   &:focus {
-    outline: 2px solid $formOutLineColor;
+    outline: 2px solid var(--form-out-line-color);
     box-shadow: none;
   }
   &::placeholder {
@@ -352,7 +355,7 @@ $formInputHeight: rem(50);
   input[type='checkbox'] + span::before {
     -webkit-transform: translateY(-50%);
     background: #fff;
-    border: 1px solid $formBorderColor;
+    border: 1px solid var(--form-border-color);
     border-radius: 2px;
     content: '';
     display: block;
@@ -365,8 +368,8 @@ $formInputHeight: rem(50);
 
   input[type='checkbox'] + span::after {
     -webkit-transform: translateY(-50%) rotate(-45deg);
-    border-bottom: 3px solid $formCheckBoxColor;
-    border-left: 3px solid $formCheckBoxColor;
+    border-bottom: 3px solid var(--form-check-box-color);
+    border-left: 3px solid var(--form-check-box-color);
     content: '';
     display: block;
     height: 0.6em;
@@ -386,7 +389,7 @@ $formInputHeight: rem(50);
     opacity: 1;
   }
   input[type='checkbox']:focus-visible + span {
-    outline: 2px solid $formOutLineColor;
+    outline: 2px solid var(--form-out-line-color);
   }
 
   .c-text {
@@ -436,7 +439,7 @@ $formInputHeight: rem(50);
   span::before {
     -webkit-transform: translateY(-50%);
     background: #fff;
-    border: 1px solid $formBorderColor;
+    border: 1px solid var(--form-border-color);
     border-radius: 5px;
     content: '';
     display: block;
@@ -450,8 +453,8 @@ $formInputHeight: rem(50);
 
   span::after {
     -webkit-transform: translateY(-50%) rotate(-45deg);
-    border-bottom: 3px solid $formAgreeColorColor;
-    border-left: 3px solid $formAgreeColorColor;
+    border-bottom: 3px solid var(--form-agree-color-color);
+    border-left: 3px solid var(--form-agree-color-color);
     content: '';
     display: block;
     height: 0.6em;
@@ -471,7 +474,7 @@ $formInputHeight: rem(50);
     opacity: 1;
   }
   input[type='checkbox']:focus-visible ~ span {
-    outline: 2px solid $formOutLineColor;
+    outline: 2px solid var(--form-out-line-color);
   }
 
   .formAgree__link {
@@ -495,6 +498,7 @@ $formInputHeight: rem(50);
   background-image: none;
   border: none;
   color: var(--base-color);
+  text-align: center;
   cursor: pointer;
   display: inline-block;
   font-size: rem(16);
@@ -516,11 +520,17 @@ $formInputHeight: rem(50);
 
   // 確認ボタン用
   &.is_confirm {
-    background: $formConfirmColor;
+    background: var(--form-confirm-color);
+    color: #fff;
+  }
+  // 戻るボタン用
+  &.is_remove {
+    background: var(--form-remove-color);
+    color: #fff;
   }
   // 非活性状態用
   &:disabled {
-    background: $formDisableColor;
+    background: var(--form-disable-color);
     pointer-events: none;
   }
 
@@ -534,7 +544,7 @@ $formInputHeight: rem(50);
     padding: 0;
   }
   &:focus-visible {
-    outline: 1px solid $formOutLineColor;
+    outline: 1px solid var(--form-out-line-color);
   }
 }
 

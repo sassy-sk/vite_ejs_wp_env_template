@@ -1,0 +1,47 @@
+@use '../../global' as * ; 
+
+.c-cardWrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(#{rem(320)}, 100%), 1fr));
+  gap: 20px;
+}
+.c-card {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
+  gap: 0;
+}
+
+.c-card__img {
+  aspect-ratio: 16 / 9;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.c-card__meta {
+
+}
+
+.c-card__date {
+
+}
+
+.c-card__category {
+
+}
+
+.c-card__title {
+
+}
+
+.c-card__body {
+
+}
+
+.c-card__text {
+
+}
+

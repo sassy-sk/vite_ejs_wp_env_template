@@ -1,6 +1,6 @@
 {
-  "core": "https://ja.wordpress.org/wordpress-6.6.1-ja.zip",
-  "phpVersion": "7.4",
+  "core": "https://ja.wordpress.org/wordpress-latest-ja.zip",
+  "phpVersion": "8.2",
   "themes": [],
   "port": 10011,
   "env": {
@@ -9,7 +9,8 @@
     }
   },
   "config": {
-    "WP_DEBUG": true
+    "WP_DEBUG": true,
+    "WP_ENVIRONMENT_TYPE": "local"
   },
   "plugins": [
     "https://downloads.wordpress.org/plugin/advanced-custom-fields.latest-stable.zip",

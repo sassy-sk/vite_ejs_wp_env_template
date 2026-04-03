@@ -46,12 +46,12 @@
 - 画像出力について 
 
 ## 使用環境
-- Node.js バージョン14系以上（現状検証してないので不明、とりあえず23.11.0で動作してます）
-- npm バージョン8以上（現状検証してないので不明、とりあえず10.9.2で動作してます）
+- Node.js 20.19以上 または 22.12以上
+- npm 10.x 以上
 - バージョン確認方法：※ターミナル上でコマンドを入力すること
   - `node -v`
   - `npm -v`
-- コマンドを入力後、数字がでてくれば大丈夫です
+
 ## 使い方および操作方法  
 ### 前提  
 - dev.config.jsonで各種設定を行います
@@ -104,6 +104,7 @@ npm run wp-env start
 6. WordPress初期設定用wp-setting.shを起動させる
 ```
 chmod +x ./wp-setting.sh
+./wp-setting.sh
 ```  
 
 
@@ -122,8 +123,11 @@ chmod +x ./wp-setting.sh
 
 #### 注意点  
 - 新規ファイルを作成した場合などはviteの仕様上か認識しない時があるので、その場合は`npm run dev`を実行しvite再起動を行ってください。（改善思案中）
-- `functions/script.php`の`define('WORDPRESS_DEV', true);`をtrueで開発サーバー、falseで本番環境のcss、jsを読み込むようにしているのでデプロイ時には必ずfalseにしたフォイルをアップしてください。  
-- 画像はpublicフォルダ内のものはWordPress側では認識されません。画像ファイルを追加した場合は`npm run build`を実行しWordPress本体に画像をコンパイルしてください。
+- `functions/script.php`で開発サーバーと本番環境でcss、jsを切り替えて読み込むようにしているのでデプロイ時には必ず`define('WORDPRESS_DEV', false);`にし設定しアップしてください。  
+- 画像は開発時はpublicフォルダの画像、本番時はビルドされた画像を読み込むように切り替えているので以下の関数を使用してください  
+```
+<?= image_path_webp('common/noImg.jpg'); ?>
+```
 
 #### コマンド
 - WordPressコンテナを起動  

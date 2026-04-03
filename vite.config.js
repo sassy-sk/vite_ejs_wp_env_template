@@ -88,7 +88,13 @@ export default defineConfig({
 
   plugins: [
     viteSassGlobImports(), // SCSSのインポートを自動化する（ワイルドカード使用可能）
-    liveReload(['parts/*.ejs', 'common/*.ejs', '../wp/wp-content/themes/**/*']), //指定したファイルでもライブリロード可能にする
+    liveReload([
+      'parts/*.ejs',
+      'common/*.ejs',
+      '../src/sass/**/*.scss',
+      '../src/js/**/*.js',
+      `../wp/wp-content/themes/${WordPressThemeName}/**/*.php`
+    ]), //指定したファイルでもライブリロード可能にする
     ViteEjsPlugin({
       fallbackImage: fallbackImage
     }),

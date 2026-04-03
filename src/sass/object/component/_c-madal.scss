@@ -1,6 +1,6 @@
 @use "../../global" as *;
 
-.c-modalMedical {
+.c-modal {
   background: var(--white);
   border: 5px solid var(--base-color);
   border-radius: 21px;
@@ -9,28 +9,28 @@
   margin: auto;
 }
 
-.c-modalMedical[open] {
+.c-modal[open] {
   display: block;
 }
 
 //背景設定
-.c-modalMedical {
+.c-modal {
   box-shadow: 0 0 0 100vmax rgb(0 0 0 / 50%);
   transition: opacity 0.5s;
 }
-// .c-modalMedical::backdrop {
+// .c-modal::backdrop {
 //   background-color: rgb(0 0 0 / 50%);
 //   -webkit-backdrop-filter: blur(4px); /* Safariではまだベンダープレフィックスが必要 */
 //   backdrop-filter: blur(4px);
 // }
 
-.c-modalMedical__container {
+.c-modal__container {
   height: inherit;
   block-size: 100%;
   position: relative;
 }
 
-.c-modalMedical__inner {
+.c-modal__inner {
   padding: rem(73) rem(30);
   height: inherit;
   overflow: scroll;
@@ -41,7 +41,7 @@
   }
 }
 
-.c-modalMedical__img {
+.c-modal__img {
   width: min(400px, 100%);
   aspect-ratio: 400 / 248;
   margin-inline: auto;
@@ -55,7 +55,7 @@
   }
 }
 
-.c-modalMedical__head {
+.c-modal__head {
   margin-top: rem(45);
 
   @include mq(md) {
@@ -63,7 +63,7 @@
   }
 }
 
-.c-modalMedical__title {
+.c-modal__title {
   font-size: rem(24);
   font-weight: var(--bold);
   text-align: center;
@@ -73,7 +73,7 @@
   }
 }
 
-.c-modalMedical__body {
+.c-modal__body {
   margin-top: rem(55);
 
   @include mq(md) {
@@ -81,7 +81,7 @@
   }
 }
 
-.c-modalMedical__close {
+.c-modal__close {
   width: rem(59);
   aspect-ratio: 1 / 1;
   border: 2px solid #a7a7a7;

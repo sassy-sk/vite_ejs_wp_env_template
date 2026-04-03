@@ -5,3 +5,4 @@ import './_tab.js';
 import './_scroll.js';
 import './_slider.js';
 import './_accordion.js';
+import './_form.js';

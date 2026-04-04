@@ -47,14 +47,23 @@ SSH接続 → rsync でテーマを転送
 
 ### 1. サーバー側の確認
 
-rsync がインストールされていること（デフォルトでは入っていない場合あり）
+rsync は**サーバー側・GitHub Actionsランナー側の両方**にインストールされている必要がある。
+
+ランナー側（`ubuntu-latest`）はデフォルトで入っていない場合があるため、ワークフロー内でインストールしている。
+
+```yaml
+- name: Install rsync
+  run: sudo apt-get install -y rsync
+```
+
+サーバー側は Bitnami など最小構成の環境では入っていない場合があるため、初回のみSSHでログインしてインストールする。
 
 ```bash
 # インストール確認
 rsync --version
 
 # インストール（Ubuntu/Debian）
-sudo apt install rsync
+sudo apt-get install -y rsync
 
 # インストール（CentOS/RHEL）
 sudo yum install rsync

@@ -156,7 +156,7 @@
 </main>
 
 <script>
-  console.log('ssh_deploy04');
+  console.log('ssh_deploy05');
 </script>
 
 <?php get_footer(); ?>

@@ -54,9 +54,6 @@ jobs:
           key: ${{ secrets.PROD_SSH_KEY }}
           known_hosts: ${{ secrets.PROD_KNOWN_HOSTS }} # 事前検証済みfingerprint
 
-      - name: Install rsync
-        run: sudo apt-get install -y rsync
-
       - name: Deploy via rsync
         run: |
           DRY_RUN_FLAG=""

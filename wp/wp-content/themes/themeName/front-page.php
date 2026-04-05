@@ -31,15 +31,15 @@
           ['title' => 'タブタイトル', 'tab' => '02'],
           ['title' => 'タブタイトル', 'tab' => '03'],
         ] ?>
-        <div class="p-tab js-tab">
+        <div class="p-tab js-tab" role="tablist">
           <div class="p-tab__head">
             <?php foreach ($tabs as $tab) : ?>
-              <button class="c-tabBtn js-tabBtn" data-tab="<?= $tab['tab'] ?>" aria-expanded="false" aria-label="タブの開閉ボタン"><?= $tab['title'] ?></button>
+              <button class="c-tabBtn js-tabBtn" data-tab="<?= $tab['tab'] ?>" aria-expanded="false" aria-label="タブの開閉ボタン" role="tab"><?= $tab['title'] ?></button>
             <?php endforeach; ?>
           </div>
           <div class="p-tab__body">
             <?php foreach ($tabs as $tab) : ?>
-              <div class="p-tab__panel js-tab-panel" data-tab-panel="<?= $tab['tab'] ?>">
+              <div class="p-tab__panel js-tab-panel" data-tab-panel="<?= $tab['tab'] ?>" role="tabpanel">
                 <!-- カードブロック -->
                 <div class="c-cardWrap">
                   <?php get_template_part('parts/c-card'); ?>
@@ -158,5 +158,7 @@
 <script>
   console.log('ssh_deploy05');
 </script>
+
+
 
 <?php get_footer(); ?>

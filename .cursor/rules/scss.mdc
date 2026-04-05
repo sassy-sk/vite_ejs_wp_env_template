@@ -1,0 +1,154 @@
+---
+description: SCSSのコーディングルール・BEM命名・レスポンシブ対応
+globs: **/*.scss
+alwaysApply: false
+---
+
+## グローバル参照
+
+- 各SCSSファイル先頭に `@use '../../global' as *;` を記述
+- `global/_index.scss` が `_setting.scss / _breakpoints.scss / _function.scss` を転送
+
+## BEM命名規則
+
+- Block: `.c-card` / `.p-header` / `.l-inner`
+- Element: `.c-card__img` / `.c-card__title`
+- Modifier: `.c-btn--lg` / `.is-active`（状態変化は `is-` プレフィックス）
+
+## プレフィックス規則
+
+| プレフィックス | 用途 |
+| --- | --- |
+| `l-` | レイアウト（`.l-inner`） |
+| `c-` | 汎用コンポーネント（`.c-btn`, `.c-card`） |
+| `p-` | プロジェクト固有（`.p-header`, `.p-tab`） |
+| `u-` | ユーティリティ（`.u-desktop`, `.u-mobile`） |
+| `js-` | JSフック用クラス（スタイルは当てない） |
+
+## SCSSのネスト記法
+
+- ブロックの中にエレメントを入れ子で書く
+- エレメントの中にエレメントは入れ子しない
+- `&__` などクラス名の省略はしない（フルクラス名で書く）
+- 擬似要素・擬似クラスは `&` を使ってOK
+
+```scss
+.c-list {
+  display: grid;
+
+  &::after {
+    content: '';
+    display: block;
+  }
+
+  @include mq(md) {
+    grid-column: span 1;
+  }
+
+  .c-list__meta {
+    display: flex;
+  }
+
+  .c-list__title {
+    font-size: rem(18);
+  }
+}
+```
+
+## モディファイアとdata属性
+
+- モディファイア（`--`）の使用は最小限にする
+- 同じコンポーネントのレイアウトパターン違いは `data-` 属性でCSSを切り替える
+
+```html
+<!-- 良い例 -->
+<div class="c-card" data-layout="horizontal">...</div>
+```
+
+```scss
+.c-card {
+  &[data-layout="horizontal"] {
+    grid-template-columns: 40% 1fr;
+  }
+}
+```
+
+## メディアクエリ
+
+- デフォルトは**PCファースト**（`$startFrom: pc`）
+- `@include mq()` で指定（デフォルトは `md = 767px`）
+- SP向け：`@include mq(md) { }` / PC限定：`@include mq(mdOut) { }`
+
+## レスポンシブ対応
+
+- 横並びレイアウトは基本 `display: grid` を使用
+- **優先①** `auto-fill` / `auto-fit` + `minmax()` でメディアクエリなしにレスポンシブ対応
+- **優先②** `@include mq()` またはコンテナクエリで対応
+
+```scss
+/* 優先①：auto-fill */
+.c-cardWrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* 優先②：コンテナクエリ（既存ブレークポイントと合わない場合） */
+.p-media-wrap {
+  container: --media-box / inline-size;
+}
+
+.p-media {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+
+  @container --media-box (max-width: 680px) {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+## CSS変数（`:root`で定義済み）
+
+```
+--inner: 1100px相当
+--padding-pc: 25px
+--padding-sp: 20px
+--base-color: #666
+--base-background: #fff
+--duration: 0.3s ease
+```
+
+## ユーティリティ関数
+
+```scss
+rem(16)                    /* 16px → rem換算 */
+vw(1440, 100)              /* 100 / 1440 * 100vw */
+rfz(14, 18, 375, 1440)     /* レスポンシブ可変フォントサイズ */
+```
+
+## 保守性ルール
+
+- `width` を指定し、`height` は `auto`、縦横比は `aspect-ratio` で指定
+- `img` には必ず `object-fit: cover` を指定
+- 全ての要素に対して極力 `height` は指定しない（paddingで対応）
+
+## 論理プロパティ
+
+`top / bottom / left / right` は使わず論理プロパティを使用。
+
+| 使わない | 使う |
+| --- | --- |
+| `padding-top` | `padding-block-start` |
+| `padding-bottom` | `padding-block-end` |
+| `padding-left` | `padding-inline-start` |
+| `padding-right` | `padding-inline-end` |
+| `margin-top` | `margin-block-start` |
+| `margin-bottom` | `margin-block-end` |
+| `margin-left` | `margin-inline-start` |
+| `margin-right` | `margin-inline-end` |
+
+## SCSSファイル追加時
+
+- `object/` 配下に作成すれば `styles.scss` のglobで自動読み込みされる
+- `global/` に追加した場合は `_index.scss` への `@forward` を忘れずに

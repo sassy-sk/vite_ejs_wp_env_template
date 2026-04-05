@@ -7,6 +7,7 @@ import liveReload from 'vite-plugin-live-reload'; //ライブリロード
 import VitePluginWebpAndPath from 'vite-plugin-webp-and-path'; //webp画像変換
 import viteImagemin from 'vite-plugin-imagemin'; //画像圧縮
 import fs from 'fs';
+import autoImportScss from './buildScript/autoImportScss.js';
 
 // dev.config.jsonから設定を取得
 const devSettings = JSON.parse(fs.readFileSync('./dev.config.json', 'utf-8'));
@@ -85,6 +86,7 @@ export default defineConfig({
   },
 
   plugins: [
+    autoImportScss(),
     liveReload([
       'parts/*.ejs',
       'common/*.ejs',

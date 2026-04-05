@@ -1,33 +1,36 @@
-// Base
-@use "./base/reset";
-@use "./base/base";
+/* このファイルは自動生成されます。直接編集しないでください。 */
+/* buildScript/autoImportScss.js によって生成 */
 
-// Layout
+/* base */
+@use "./base/base";
+@use "./base/reset";
+
+/* layout */
 @use "./object/layout/l-inner";
 @use "./object/layout/l-parts";
 
-// Component
-@use "./object/component/c-angle";
-@use "./object/component/paginaiton";
-@use "./object/component/c-page-top";
-@use "./object/component/c-btn";
-@use "./object/component/c-hamburger";
-@use "./object/component/c-card";
-@use "./object/component/c-modalBtn";
-@use "./object/component/c-tabBtn";
+/* component */
 @use "./object/component/c-accordion";
-@use "./object/component/c-madal";
+@use "./object/component/c-angle";
+@use "./object/component/c-btn";
+@use "./object/component/c-card";
 @use "./object/component/c-details";
+@use "./object/component/c-hamburger";
 @use "./object/component/c-list";
+@use "./object/component/c-madal";
+@use "./object/component/c-modalBtn";
+@use "./object/component/c-page-top";
+@use "./object/component/c-tabBtn";
+@use "./object/component/paginaiton";
 
-// Project
-@use "./object/project/p-header";
-@use "./object/project/p-footer";
-@use "./object/project/p-drawer-menu";
-@use "./object/project/p-header-menu";
-@use "./object/project/p-tab";
+/* project */
 @use "./object/project/form";
+@use "./object/project/p-drawer-menu";
+@use "./object/project/p-footer";
+@use "./object/project/p-header-menu";
+@use "./object/project/p-header";
+@use "./object/project/p-tab";
 
-// Utility
+/* utility */
 @use "./object/utility/keyframes";
 @use "./object/utility/utilitySet";

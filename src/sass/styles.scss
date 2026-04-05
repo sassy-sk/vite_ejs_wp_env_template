@@ -1,2 +1,33 @@
-@use "./base/*";
-@use "./object/**/*";
+// Base
+@use "./base/reset";
+@use "./base/base";
+
+// Layout
+@use "./object/layout/l-inner";
+@use "./object/layout/l-parts";
+
+// Component
+@use "./object/component/c-angle";
+@use "./object/component/paginaiton";
+@use "./object/component/c-page-top";
+@use "./object/component/c-btn";
+@use "./object/component/c-hamburger";
+@use "./object/component/c-card";
+@use "./object/component/c-modalBtn";
+@use "./object/component/c-tabBtn";
+@use "./object/component/c-accordion";
+@use "./object/component/c-madal";
+@use "./object/component/c-details";
+@use "./object/component/c-list";
+
+// Project
+@use "./object/project/p-header";
+@use "./object/project/p-footer";
+@use "./object/project/p-drawer-menu";
+@use "./object/project/p-header-menu";
+@use "./object/project/p-tab";
+@use "./object/project/form";
+
+// Utility
+@use "./object/utility/keyframes";
+@use "./object/utility/utilitySet";

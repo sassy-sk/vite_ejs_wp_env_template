@@ -1,0 +1,67 @@
+---
+description: JavaScriptのコーディングルール
+globs: **/*.js
+alwaysApply: false
+---
+
+## ファイル構成
+
+- エントリー：`src/js/script.js`（`import` でまとめるだけ）
+- 機能別：`src/js/_xxx.js`（アンダースコア始まり）
+
+## 基本スタイル
+
+- `document.addEventListener('DOMContentLoaded', () => { })` でラップ
+- DOM取得後に存在チェックを入れてから処理
+
+```js
+const el = document.querySelector('.js-target');
+if (el) {
+  // 処理
+}
+```
+
+## JSフッククラス
+
+- JSで操作するクラスは必ず `js-` プレフィックス：`.js-tab`, `.js-modal`, `.js-accordion`
+- 状態クラスは `is-active` / `is-open`
+- `js-` クラスにはCSSスタイルを当てない
+
+## 状態変化の表現
+
+- JSから `element.style.xxx` で直接CSSを操作しない
+- クラスまたは属性値のつけ外しで状態変化を表現し、見た目の制御はCSSに委譲する
+
+```js
+/* 良い例（クラス） */
+el.classList.add('is-active');
+el.classList.toggle('is-open');
+
+/* 良い例（属性値） */
+el.setAttribute('aria-expanded', 'true');
+el.setAttribute('aria-hidden', 'false');
+el.setAttribute('data-state', 'open');
+```
+
+```scss
+/* CSS側で状態に応じたスタイルを定義する */
+.c-drawer {
+  opacity: 0;
+  visibility: hidden;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+```
+
+## aria属性
+
+- インタラクティブ要素には `aria-expanded` / `aria-hidden` / `aria-label` を適切に設定
+- タブ：`role="tablist"` / `role="tab"` / `role="tabpanel"`
+- モーダル：`<dialog>` 要素を使用、`aria-labelledby` / `aria-describedby` を設定
+
+## jQueryとバニラJS
+
+- jQueryは読み込まれているが、新規コードは**バニラJSで書く**

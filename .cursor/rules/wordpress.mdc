@@ -1,0 +1,45 @@
+---
+description: WordPressテンプレートのコーディングルール
+globs: wp/**/*.php
+alwaysApply: false
+---
+
+## テーマ構造（`wp/wp-content/themes/themeName/`）
+
+- `functions.php` は `require_once` のみ。処理は `functions/` 配下に分割
+- パーツは `parts/` 配下、`get_template_part('parts/c-card')` で呼び出す
+- ページテンプレートは `page-{slug}.php` の命名規則
+
+## 画像出力
+
+- 画像は必ず `image_path_webp()` 関数を使う（開発環境 / 本番環境を自動切替）
+
+```php
+<img src="<?= image_path_webp('common/noImg.jpg') ?>" alt="">
+```
+
+## テンプレートタグ
+
+- `get_header()` / `get_footer()` で共通パーツを読み込む
+- データ出力は `<?= $var ?>` （`echo` の省略形）
+- ループ処理は `foreach` の代替構文を使う
+
+```php
+<?php foreach ($items as $item) : ?>
+  ...
+<?php endforeach; ?>
+```
+
+## EJSとの対応
+
+| EJS | WordPress |
+| --- | --- |
+| `<%= value %>` | `<?= $value ?>` |
+| `<%- include('parts/_c-card', {...}) %>` | `<?php get_template_part('parts/c-card'); ?>` |
+| `baseMeta.image + 'path.jpg'` | `image_path_webp('path.jpg')` |
+| `<% arr.forEach(item => { %>` | `<?php foreach ($arr as $item) : ?>` |
+
+## セキュリティ
+
+- テンプレート内の変数出力は `esc_html()` / `esc_url()` / `esc_attr()` でエスケープ
+- フォームは Contact Form 7 を使用

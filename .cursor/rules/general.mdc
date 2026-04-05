@@ -1,0 +1,43 @@
+---
+description: 共通コーディングルール・プロジェクト構造
+alwaysApply: true
+---
+
+## 共通ルール
+
+- インデント：スペース2つ
+- コメントは日本語
+- 変数名・関数名・クラス名は英語（キャメルケースまたはケバブケース）
+- コミットメッセージは日本語OK
+- アクセシビリティ（WAI-ARIA）を意識して実装する
+
+## セマンティックHTML
+
+- アコーディオンは可能な限り `<details>` / `<summary>` を使う
+- モーダルは可能な限り `<dialog>` 要素を使う
+- `<dialog>` は `showModal()` / `close()` で開閉する。フォーカストラップ・ESCキー閉じはブラウザが標準で処理するため、自前で実装しない
+
+## プロジェクト構造
+
+```
+src/
+  index.html          # EJSエントリーポイント（ページごとに配置）
+  common/             # _head.ejs / _header.ejs / _footer.ejs
+  parts/              # 再利用パーツ（_c-xxx.ejs / _p-xxx.ejs）
+  js/                 # script.js（エントリー）+ _xxx.js（機能別）
+  sass/
+    styles.scss       # エントリー（@use でglobal/base/objectを読み込む）
+    global/           # _setting.scss / _breakpoints.scss / _function.scss / _index.scss
+    base/             # _reset.scss / _base.scss
+    object/
+      layout/         # _l-xxx.scss
+      component/      # _c-xxx.scss
+      project/        # _p-xxx.scss
+      utility/        # _utilitySet.scss / _keyframes.scss
+
+wp/wp-content/themes/themeName/
+  functions.php       # require_onceで各機能ファイルを読み込むだけ
+  functions/          # init / script / link / path / admin / security など
+  parts/              # c-list.php / c-card.php / form.php / picture.php など
+  front-page.php / page.php / single.php / archive.php など
+```

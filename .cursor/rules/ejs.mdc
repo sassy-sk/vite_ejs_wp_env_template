@@ -1,0 +1,41 @@
+---
+description: EJSテンプレートのコーディングルール
+globs: **/*.ejs
+alwaysApply: false
+---
+
+## ファイル命名
+
+- パーツファイルはアンダースコア始まり：`_c-card.ejs`、`_p-header.ejs`
+- コンポーネント系は `_c-`、プロジェクト固有は `_p-`、共通は `common/` 配下
+
+## データの渡し方
+
+- ページ固有データはページ先頭でEJS変数として定義し、`include` 時に渡す
+- `baseMeta` オブジェクトに `title / desc / path / incPath / page / image` を持たせる
+
+```ejs
+<% baseMeta = {
+  title: 'ページタイトル',
+  desc: 'ディスクリプション',
+  path: './',
+  incPath: '',
+  page: 'top',
+  image: './assets/images/',
+}; %>
+
+<%- include(baseMeta.incPath + 'common/_head', { baseMeta }) %>
+<%- include(baseMeta.incPath + 'parts/_c-card', { link: '#', title: 'タイトル' }) %>
+```
+
+## EJS構文
+
+- 出力（エスケープあり）：`<%= value %>`
+- 出力（エスケープなし）：`<%- include(...) %>`
+- ロジック：`<% if / forEach %>`
+- コメント：`<%# コメント %>`
+
+## パス
+
+- `baseMeta.path` で相対パスのルートを統一（深い階層でも `../../` を避ける）
+- 画像は `baseMeta.image + 'common/noImg.jpg'` の形式

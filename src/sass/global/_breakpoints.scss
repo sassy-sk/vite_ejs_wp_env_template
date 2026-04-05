@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 // どっちファーストの設定（"sp" or "pc"）
 $startFrom: pc;
 
@@ -20,10 +22,10 @@ $mediaquerys: (
 
   //メディアクエリー
   $mediaquerys: (
-    sm: "screen and (min-width: #{map-get($breakpoints,'sm')}px)",
-    md: "screen and (min-width: #{map-get($breakpoints,'md')}px)",
-    lg: "screen and (min-width: #{map-get($breakpoints,'lg')}px)",
-    xl: "screen and (min-width: #{map-get($breakpoints,'xl')}px)",
+    sm: "screen and (min-width: #{map.get($breakpoints,'sm')}px)",
+    md: "screen and (min-width: #{map.get($breakpoints,'md')}px)",
+    lg: "screen and (min-width: #{map.get($breakpoints,'lg')}px)",
+    xl: "screen and (min-width: #{map.get($breakpoints,'xl')}px)",
   );
 
 } @else {
@@ -34,12 +36,12 @@ $mediaquerys: (
     sm: 600,
   );
   $mediaquerys: (
-    sm: "screen and (max-width: #{map-get($breakpoints,'sm')}px)",
-    md: "screen and (max-width: #{map-get($breakpoints,'md')}px)",
-    mdOut: "screen and (min-width: #{map-get($breakpoints,'md') + 1}px)",
-    lg: "print, screen and (max-width: #{map-get($breakpoints,'lg')}px)",
-    lgOut: "screen and (min-width: #{map-get($breakpoints,'lg') + 1}px)",
-    xl: "screen and (min-width: #{map-get($breakpoints,'xl')}px)",
+    sm: "screen and (max-width: #{map.get($breakpoints,'sm')}px)",
+    md: "screen and (max-width: #{map.get($breakpoints,'md')}px)",
+    mdOut: "screen and (min-width: #{map.get($breakpoints,'md') + 1}px)",
+    lg: "print, screen and (max-width: #{map.get($breakpoints,'lg')}px)",
+    lgOut: "screen and (min-width: #{map.get($breakpoints,'lg') + 1}px)",
+    xl: "screen and (min-width: #{map.get($breakpoints,'xl')}px)",
   );
 
 
@@ -47,7 +49,7 @@ $mediaquerys: (
 
 // @include mq(){}で書くとブレークポイントが反映される（初期値はmd）
 @mixin mq($mediaquery: md) {
-  @media #{map-get($mediaquerys, $mediaquery)} {
+  @media #{map.get($mediaquerys, $mediaquery)} {
     @content;
   }
 }

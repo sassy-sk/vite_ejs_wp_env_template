@@ -3,6 +3,9 @@
 // インナー幅設定 rem()関数用・メディアクエリ用
 $innerValue: 1100;
 $inner: calc($innerValue * 1px);
+// レスポンシブ可変フォントサイズ設定(rfz関数用)
+$minVw: 768;
+$maxVw: $innerValue;
 
 :root {
   --innerValue: 1100;

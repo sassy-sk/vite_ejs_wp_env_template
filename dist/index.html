@@ -7,7 +7,6 @@
 
 
 
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -36,7 +35,9 @@
   <!-- css -->
   <!-- JavaScript -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script type="module" crossorigin src="./assets/js/script.js"></script>
+  <script type="module" crossorigin src="./assets/js/index.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/js/modules/modulepreload-polyfill.js">
+  <link rel="modulepreload" crossorigin href="./assets/js/script.js">
   <link rel="stylesheet" crossorigin href="./assets/css/styles.css">
 </head>
 
@@ -97,248 +98,245 @@
   </div>
 </header>
     <main>
+      <div class="test">
+        <div class="l-inner">
 
-      <div class="p-mv">
-        <picture>
-  
-  
-  <source srcset="./assets/images/common/image1_sp.webp" width="300" height="300" media="(max-width:767px)">
-  
-  
-  <img src="./assets/images/common/image1.webp" alt="ダミー画像" width="800" height="800" decoding="async"  loading="lazy" >
-  </picture>
+          <h1>トップページ</h1>
 
-      </div>
+          <img src="./assets/images/common/noImg.webp" alt="">
 
-      <div id="sec1" class="p-mv">
-        <picture>
-  
-  
-  <source srcset="./assets/images/common/image1_sp.webp" width="300" height="300" media="(max-width:767px)">
-  
-  
-  <img src="./assets/images/common/image1.webp" alt="ダミー画像" width="800" height="800" decoding="async"  loading="lazy" >
-  </picture>
+          <hr />
 
-      </div>
-
-      <div class="l-inner">
-        <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-        <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-        <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-        <p>テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト</p>
-
-        <ul hidden="until-found">
-          <li>リストです</li>
-          <li>リストです</li>
-          <li>リストです</li>
-          <li>リストです</li>
-        </ul>
-
-
-        <div style="margin-top: 100px;"></div>
-
-
-        <div class="p-panels">
-          
-          <button class="c-panel " data-modal-open="medicalModal1">
-  <span class="c-panel__img">
-    
-  
-  
-  <img src="./assets/images/common/image1.webp" alt=""    >
-  
-
-  </span>
-  <span class="c-panel__text">歯列矯正</span>
-</button>
-
-          
-          <button class="c-panel " data-modal-open="medicalModal2">
-  <span class="c-panel__img">
-    
-  
-  
-  <img src="./assets/images/common/image1.webp" alt=""    >
-  
-
-  </span>
-  <span class="c-panel__text">リンガルブラケット<br>矯正</span>
-</button>
-
-          
-          <button class="c-panel " data-modal-open="medicalModal3">
-  <span class="c-panel__img">
-    
-  
-  
-  <img src="./assets/images/common/image1.webp" alt=""    >
-  
-
-  </span>
-  <span class="c-panel__text">マウスピース矯正</span>
-</button>
-
-          
-          <button class="c-panel " data-modal-open="medicalModal4">
-  <span class="c-panel__img">
-    
-  
-  
-  <img src="./assets/images/common/image1.webp" alt=""    >
-  
-
-  </span>
-  <span class="c-panel__text">ホーム<br>ホワイトニング</span>
-</button>
-
-          
-        </div>
-        
-        <dialog id="medicalModal1" class="c-modalMedical js-modalDialog" aria-labelledby="medicalModalTitle1" aria-describedby="medicalModalDesc1" autofocus>
-  <div class="c-modalMedical__container js-modalContainer">
-    <div class="c-modalMedical__inner">
-      <div class="c-modalMedical__img">
-        <picture>
-  
-  
-  <source srcset="./assets/images/common/image1.webp"   media="(max-width:767px)">
-  
-  
-  <img src="./assets/images/common/image1.webp" alt=""   decoding="async"  loading="lazy" >
-  </picture>
-
-      </div>
-      <div class="c-modalMedical__head">
-        <p id="medicalModalTitle1" class="c-modalMedical__title">歯列矯正</p>
-      </div>
-      <div class="c-modalMedical__body">
-        <p id="medicalModalDesc1" class="c-modalMedical__text c-text">
-          当院では、最先端の技術を駆使して患者様の美しい笑顔を実現するため、ジルコニア製セラミックブラケットを用いた歯列矯正を提供しています。<br>ジルコニア製セラミックブラケットは、従来の金属ブラケットに比べて見た目が自然であり、歯の表面に装着しても目立ちにくい特長があります。その透明感となめらかな質感は、治療中でも美しい笑顔を保つことができることを可能にします。<br>また、ジルコニア製セラミックブラケットは金属ブラケットと比べて耐久性が高く、色や染み付きにも強いため、長期間安心してご利用いただけます。さらに、歯の表面との摩擦が少ないため、矯正治療中の不快感も軽減されます。
-        </p>
-      </div>
-      <button class="c-modalMedical__close" type="button" aria-label="モーダルを閉じる" data-modal-close></button>
-    </div>
+          <!-- リストブロック -->
+          <div class="c-listWrap">
+            
+<div class="c-list">
+  <div class="c-list__meta">
+    <time class="c-list__time" datetime="2020-07-20">2020.07.20</time>
+    <span class="c-list__category">お知らせ</span>
   </div>
-</dialog>
-        
-        <dialog id="medicalModal2" class="c-modalMedical js-modalDialog" aria-labelledby="medicalModalTitle2" aria-describedby="medicalModalDesc2" autofocus>
-  <div class="c-modalMedical__container js-modalContainer">
-    <div class="c-modalMedical__inner">
-      <div class="c-modalMedical__img">
-        <picture>
-  
-  
-  <source srcset="./assets/images/common/image1.webp"   media="(max-width:767px)">
-  
-  
-  <img src="./assets/images/common/image1.webp" alt=""   decoding="async"  loading="lazy" >
-  </picture>
-
-      </div>
-      <div class="c-modalMedical__head">
-        <p id="medicalModalTitle2" class="c-modalMedical__title">リンガルブラケット矯正</p>
-      </div>
-      <div class="c-modalMedical__body">
-        <p id="medicalModalDesc2" class="c-modalMedical__text c-text">
-          リンガルブラケット矯正は、裏側から歯列を矯正する方法であり、ブラケットを歯の裏側に装着することで、外からはほとんど見えない治療法です。<br>この方法は、従来のブラケット矯正と比べて見た目が自然であり、治療中でも自信を持って笑顔を見せることができます。また、ブラケットが歯の裏側に装着されているため、外部からの衝撃や摩擦によるダメージを最小限に抑えることができます。<br>見た目を気にせずに歯の健康と美しさを実現したい方におすすめです。
-        </p>
-      </div>
-      <button class="c-modalMedical__close" type="button" aria-label="モーダルを閉じる" data-modal-close></button>
-    </div>
+  <div class="c-list__body">
+    <a href="#">
+      <h2 class="c-list__title">記事タイトルが入ります。記事タイトルが入ります。記事タイトルが入ります。</h2>
+    </a>
   </div>
-</dialog>
-        
-        <dialog id="medicalModal3" class="c-modalMedical js-modalDialog" aria-labelledby="medicalModalTitle3" aria-describedby="medicalModalDesc3" autofocus>
-  <div class="c-modalMedical__container js-modalContainer">
-    <div class="c-modalMedical__inner">
-      <div class="c-modalMedical__img">
-        <picture>
-  
-  
-  <source srcset="./assets/images/common/image1.webp"   media="(max-width:767px)">
-  
-  
-  <img src="./assets/images/common/image1.webp" alt=""   decoding="async"  loading="lazy" >
-  </picture>
+</div>
+          </div>
 
-      </div>
-      <div class="c-modalMedical__head">
-        <p id="medicalModalTitle3" class="c-modalMedical__title">マウスピース矯正</p>
-      </div>
-      <div class="c-modalMedical__body">
-        <p id="medicalModalDesc3" class="c-modalMedical__text c-text">
-          金属ブラケットやワイヤーを使用せず、透明で目立ちにくいマウスピースを装着することで、治療中でも自然な笑顔を保つことができます。また、マウスピースは取り外しが可能なので、食事や歯磨きの際に取り外すことができ、日常生活における快適さを確保します。<br>マウスピース矯正は、軽度から中等度の歯並びの問題を解決するための効果的な方法です。当院の専門医師が患者様の状態に合わせてカスタマイズされた治療プランを提案し、安全かつ効果的な治療を行います。<br>歯列矯正をしたいけれども目立つ装置を付けることに不安がある方や、忙しい生活を送っている方におすすめです。
-        </p>
-      </div>
-      <button class="c-modalMedical__close" type="button" aria-label="モーダルを閉じる" data-modal-close></button>
-    </div>
+          <hr />
+
+          <!-- カードブロック -->
+          <div class="c-cardWrap">
+            
+<a class="c-card" href="#">
+  <figure class="c-card__img">
+    <img src="./assets/images/common/noImg.webp" alt="">
+  </figure>
+  <div class="c-card__body">
+    <time class="c-card__date" datetime="">2020.07.20</time>
+    <h3 class="c-card__title">カードタイトル</h3>
   </div>
-</dialog>
-        
-        <dialog id="medicalModal4" class="c-modalMedical js-modalDialog" aria-labelledby="medicalModalTitle4" aria-describedby="medicalModalDesc4" autofocus>
-  <div class="c-modalMedical__container js-modalContainer">
-    <div class="c-modalMedical__inner">
-      <div class="c-modalMedical__img">
-        <picture>
-  
-  
-  <source srcset="./assets/images/common/image1.webp"   media="(max-width:767px)">
-  
-  
-  <img src="./assets/images/common/image1.webp" alt=""   decoding="async"  loading="lazy" >
-  </picture>
-
-      </div>
-      <div class="c-modalMedical__head">
-        <p id="medicalModalTitle4" class="c-modalMedical__title">ホームホワイトニング</p>
-      </div>
-      <div class="c-modalMedical__body">
-        <p id="medicalModalDesc4" class="c-modalMedical__text c-text">
-          自宅で手軽に行えるホームホワイトニングを提供しています。ホームホワイトニングは、歯科医師が特別に調合した漂白剤を使い、歯の色を明るくする方法です。<br>この治療は、患者様が自宅で行うため、忙しいスケジュールの中でも効果的に歯を白くすることができます。特別な装置や器具を使わず、自分のペースで治療を進めることができるので、快適さと利便性を両立した治療法です。<br>ホームホワイトニングは、徐々に歯の色を明るくしていくので、自然な白さを保ちながら美しい笑顔を手に入れることができます。また、歯科医師が適切な濃度の漂白剤を調整し、治療の進行を定期的にチェックするため、安全かつ効果的な治療を受けることができます。
-        </p>
-      </div>
-      <button class="c-modalMedical__close" type="button" aria-label="モーダルを閉じる" data-modal-close></button>
-    </div>
+  <div class="c-card__bottom">
+    <p class="c-card__text">カードテキスト</p>
   </div>
-</dialog>
-        
+</a>
+          </div>
 
+          <hr />
 
-        <div style="margin-top: 100px;"></div>
+          <!-- タブブロック -->
+          <div class="p-tab js-tab" role="tablist">
+            <div class="p-tab__head">
+              
+                <button class="c-tabBtn js-tabBtn" data-tab="01" aria-expanded="false" aria-label="タブの開閉ボタン" role="tab">タブタイトル</button>
+              
+                <button class="c-tabBtn js-tabBtn" data-tab="02" aria-expanded="false" aria-label="タブの開閉ボタン" role="tab">タブタイトル</button>
+              
+                <button class="c-tabBtn js-tabBtn" data-tab="03" aria-expanded="false" aria-label="タブの開閉ボタン" role="tab">タブタイトル</button>
+              
+            </div>
+            <div class="p-tab__body">
+              
+                <div class="p-tab__panel js-tab-panel" data-tab-panel="01" role="tabpanel">
+                  <!-- カードブロック -->
+                  <div class="c-cardWrap">
+                    
+<a class="c-card" href="#">
+  <figure class="c-card__img">
+    <img src="./assets/images/common/noImg.webp" alt="">
+  </figure>
+  <div class="c-card__body">
+    <time class="c-card__date" datetime="">2020.07.20</time>
+    <h3 class="c-card__title">カードタイトル</h3>
+  </div>
+  <div class="c-card__bottom">
+    <p class="c-card__text">カードテキスト</p>
+  </div>
+</a>
+                  </div>
+                  <span>01</span>
+                </div>
+              
+                <div class="p-tab__panel js-tab-panel" data-tab-panel="02" role="tabpanel">
+                  <!-- カードブロック -->
+                  <div class="c-cardWrap">
+                    
+<a class="c-card" href="#">
+  <figure class="c-card__img">
+    <img src="./assets/images/common/noImg.webp" alt="">
+  </figure>
+  <div class="c-card__body">
+    <time class="c-card__date" datetime="">2020.07.20</time>
+    <h3 class="c-card__title">カードタイトル</h3>
+  </div>
+  <div class="c-card__bottom">
+    <p class="c-card__text">カードテキスト</p>
+  </div>
+</a>
+                  </div>
+                  <span>02</span>
+                </div>
+              
+                <div class="p-tab__panel js-tab-panel" data-tab-panel="03" role="tabpanel">
+                  <!-- カードブロック -->
+                  <div class="c-cardWrap">
+                    
+<a class="c-card" href="#">
+  <figure class="c-card__img">
+    <img src="./assets/images/common/noImg.webp" alt="">
+  </figure>
+  <div class="c-card__body">
+    <time class="c-card__date" datetime="">2020.07.20</time>
+    <h3 class="c-card__title">カードタイトル</h3>
+  </div>
+  <div class="c-card__bottom">
+    <p class="c-card__text">カードテキスト</p>
+  </div>
+</a>
+                  </div>
+                  <span>03</span>
+                </div>
+              
+            </div>
+          </div>
 
+          <!-- アコーディオンブロック（details） -->
+          <details class="c-details js_accordion">
+  <summary class="c-details__btn js_accordion_summary">続きを見る</summary>
+  <div class="c-details__body js_accordion_body">
+    <div class="c-details__inner">
+      <p>記事ブロックの表示を、表示・非表示の設定ができます。<br>説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。</p>
+      <p>説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。説明文がここに入ります。</p>
+    </div>
+    <button class="c-details__close js_accordion__close">閉じる</button>
+  </div>
+</details>
 
-        
-        <div class="p-qa__accordion">
+          <hr />
+
+          <!-- アコーディオンブロック -->
           <div class="c-accordion">
-  <button class="c-accordion__btn js-accordion__btn" aria-expanded="false" aria-label="質問欄の開閉ボタン">Q. やっぱり子どもの頃から治療した方がいいの?</button>
+  <button class="c-accordion__btn js-accordion__btn" aria-expanded="false" aria-label="質問欄の開閉ボタン">Q. 質問文</button>
   <div class="c-accordion__body" aria-hidden="true">
     <div>
       <p class="c-accordion__answer c-text-l">
-        何歳からでも可能ですが、早い方が良かったという場合があります。<br>まずは気がついたときにご相談下さい。<br>なお早期から治療して治療期間が長くなっても治療費はかわりません。
+        回答文
       </p>
     </div>
   </div>
 </div>
-        </div>
-        
-        <div class="p-qa__accordion">
-          <div class="c-accordion">
-  <button class="c-accordion__btn js-accordion__btn" aria-expanded="false" aria-label="質問欄の開閉ボタン">Q. 矯正治療中に虫歯が出来たら?</button>
-  <div class="c-accordion__body" aria-hidden="true">
-    <div>
-      <p class="c-accordion__answer c-text-l">
-        治療中であっても虫歯の治療は可能です。<br>治療の必要があればかかりつけの歯科医院にお願いします。<br>毎月のようにお口のなかの状態をチェックして、虫歯ができないようにします。
-      </p>
+
+          <hr />
+
+          <!-- モーダルボタンブロック -->
+          <div class="c-modalBtnWrap">
+            
+              <button class="c-modalBtn " data-modal-open="modal01">
+  <span class="c-modalBtn__img">
+    <img src="./assets/images/common/noImg.webp" alt="モーダルボタン画像">
+  </span>
+  <span class="c-modalBtn__text">モーダルボタンテキスト01</span>
+</button>
+
+              <dialog id="modal01" class="c-modal js-modalDialog" aria-labelledby="モーダルタイトル01" aria-describedby="モーダルテキスト01" autofocus>
+  <div class="c-modal__container js-modalContainer">
+    <div class="c-modal__inner">
+      <div class="c-modal__img">
+        <img src="./assets/images/common/noImg.webp" alt="モーダル画像">
+      </div>
+      <div class="c-modal__head">
+        <p id="モーダルタイトル01" class="c-modal__title">モーダルタイトル01</p>
+      </div>
+      <div class="c-modal__body">
+        <p id="モーダルテキスト01" class="c-modal__text c-text">
+          モーダルテキスト01
+        </p>
+      </div>
+      <button class="c-modal__close" type="button" aria-label="モーダルを閉じる" data-modal-close></button>
     </div>
   </div>
-</div>
-        </div>
-        
+</dialog>
+            
+              <button class="c-modalBtn " data-modal-open="modal02">
+  <span class="c-modalBtn__img">
+    <img src="./assets/images/common/noImg.webp" alt="モーダルボタン画像">
+  </span>
+  <span class="c-modalBtn__text">モーダルボタンテキスト02</span>
+</button>
 
-
+              <dialog id="modal02" class="c-modal js-modalDialog" aria-labelledby="モーダルタイトル02" aria-describedby="モーダルテキスト02" autofocus>
+  <div class="c-modal__container js-modalContainer">
+    <div class="c-modal__inner">
+      <div class="c-modal__img">
+        <img src="./assets/images/common/noImg.webp" alt="モーダル画像">
       </div>
+      <div class="c-modal__head">
+        <p id="モーダルタイトル02" class="c-modal__title">モーダルタイトル02</p>
+      </div>
+      <div class="c-modal__body">
+        <p id="モーダルテキスト02" class="c-modal__text c-text">
+          モーダルテキスト02
+        </p>
+      </div>
+      <button class="c-modal__close" type="button" aria-label="モーダルを閉じる" data-modal-close></button>
+    </div>
+  </div>
+</dialog>
+            
+              <button class="c-modalBtn " data-modal-open="modal03">
+  <span class="c-modalBtn__img">
+    <img src="./assets/images/common/noImg.webp" alt="モーダルボタン画像">
+  </span>
+  <span class="c-modalBtn__text">モーダルボタンテキスト03</span>
+</button>
 
+              <dialog id="modal03" class="c-modal js-modalDialog" aria-labelledby="モーダルタイトル03" aria-describedby="モーダルテキスト03" autofocus>
+  <div class="c-modal__container js-modalContainer">
+    <div class="c-modal__inner">
+      <div class="c-modal__img">
+        <img src="./assets/images/common/noImg.webp" alt="モーダル画像">
+      </div>
+      <div class="c-modal__head">
+        <p id="モーダルタイトル03" class="c-modal__title">モーダルタイトル03</p>
+      </div>
+      <div class="c-modal__body">
+        <p id="モーダルテキスト03" class="c-modal__text c-text">
+          モーダルテキスト03
+        </p>
+      </div>
+      <button class="c-modal__close" type="button" aria-label="モーダルを閉じる" data-modal-close></button>
+    </div>
+  </div>
+</dialog>
+            
+          </div>
+
+          <hr />
+
+          <div class="" style="margin-bottom: 300px;"></div>
+
+        </div>
+      </div>
     </main>
     <!-- ページトップボタン -->
     <a href="#top" class="c-page-top js-page-top">

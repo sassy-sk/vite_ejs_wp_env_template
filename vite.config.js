@@ -2,12 +2,12 @@ import { defineConfig } from 'vite';
 import { globSync } from 'glob'; //各ファイルの名前を取得し一括で登録
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import viteSassGlobImports from 'vite-plugin-sass-glob-import'; // SCSSのインポートを自動化する ワイルドカード使用
 import { ViteEjsPlugin } from 'vite-plugin-ejs'; // ejs使用
 import liveReload from 'vite-plugin-live-reload'; //ライブリロード
 import VitePluginWebpAndPath from 'vite-plugin-webp-and-path'; //webp画像変換
 import viteImagemin from 'vite-plugin-imagemin'; //画像圧縮
 import fs from 'fs';
+import autoImportScss from './buildScript/autoImportScss.js';
 
 // dev.config.jsonから設定を取得
 const devSettings = JSON.parse(fs.readFileSync('./dev.config.json', 'utf-8'));
@@ -51,7 +51,6 @@ export default defineConfig({
     emptyOutDir: fallbackImage || wordpress ? false : true, // fallbackImageがtrueの場合はディレクトリを削除しない
     sourcemap: false, //jsのソースマップの設定
     minify: false, //圧縮を無効化
-    polyfillModulePreload: false, //ModulePreload_polyfillの有無
     rollupOptions: {
       input: inputObj, //Globで該当ファイル名取得してObjectにしたもの
       output: {
@@ -87,7 +86,7 @@ export default defineConfig({
   },
 
   plugins: [
-    viteSassGlobImports(), // SCSSのインポートを自動化する（ワイルドカード使用可能）
+    autoImportScss(),
     liveReload([
       'parts/*.ejs',
       'common/*.ejs',

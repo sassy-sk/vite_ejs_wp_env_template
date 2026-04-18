@@ -36,9 +36,7 @@ const inputScssArray = globSync('./src/**/*.scss', {
 });
 
 /** 各ファイル情報の配列をまとめて、Objectに設定 wordpressの場合はhtmlファイルを含めない*/
-const inputObj = wordpress
-  ? Object.fromEntries(inputJsArray.concat(inputScssArray))
-  : Object.fromEntries(inputJsArray.concat(inputHtmlArray, inputScssArray));
+const inputObj = wordpress ? Object.fromEntries(inputJsArray.concat(inputScssArray)) : Object.fromEntries(inputJsArray.concat(inputHtmlArray, inputScssArray));
 
 /** Viteの設定 */
 export default defineConfig({
@@ -81,19 +79,25 @@ export default defineConfig({
     host: true, //IPアドレスで表示
     open: wordpress ? `http://localhost:${WordPressPort}` : '/', //起動時に自動でブラウザで開くページを指定
     watch: {
-      usePolling: true, // ファイル変更をポーリングで監視
-    },
+      usePolling: true // ファイル変更をポーリングで監視
+    }
   },
 
   plugins: [
+    // ビルド後のCSSで ../assets/ → ../ に置換（assets/css/ から assets/images/ への正しい相対パスにする）
+    {
+      name: 'fix-css-image-paths',
+      enforce: 'post',
+      generateBundle(_, bundle) {
+        for (const [fileName, chunk] of Object.entries(bundle)) {
+          if (fileName.endsWith('.css') && chunk.source) {
+            chunk.source = chunk.source.replaceAll('../assets/', '../');
+          }
+        }
+      }
+    },
     autoImportScss(),
-    liveReload([
-      'parts/*.ejs',
-      'common/*.ejs',
-      '../src/sass/**/*.scss',
-      '../src/js/**/*.js',
-      `../wp/wp-content/themes/${WordPressThemeName}/**/*.php`
-    ]), //指定したファイルでもライブリロード可能にする
+    liveReload(['parts/*.ejs', 'common/*.ejs', '../src/sass/**/*.scss', '../src/js/**/*.js', `../wp/wp-content/themes/${WordPressThemeName}/**/*.php`]), //指定したファイルでもライブリロード可能にする
     ViteEjsPlugin({
       fallbackImage: fallbackImage
     }),
@@ -133,6 +137,6 @@ export default defineConfig({
           textExtensions: 'html,css,ejs,js',
           quality: 80,
           preserveOriginal: true // 元の画像を残す
-        }),
-  ],
+        })
+  ]
 });

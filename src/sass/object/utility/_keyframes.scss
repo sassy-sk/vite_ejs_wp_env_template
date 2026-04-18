@@ -17,3 +17,28 @@
       opacity: 0;
   }
 }
+
+// ブラーイン：ぼかしが取れて鮮明になる
+@keyframes blurIn {
+  from {
+    filter: blur(12px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+// ブラーアウト：鮮明からぼかして消える
+@keyframes blurOut {
+  from {
+    filter: blur(0);
+    opacity: 1;
+  }
+  to {
+    filter: blur(12px);
+    opacity: 0;
+  }
+}
+

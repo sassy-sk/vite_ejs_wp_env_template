@@ -1,4 +1,8 @@
-<?php $urls = get_my_urls(); ?>
+<?php 
+  $urls = get_my_urls();
+  $headerMenuUrls = get_header_menu_urls();
+  $subMenuUrls = get_my_urls();
+?>
 <header class="l-header p-header js-header" data-fixed-header>
   <div class="p-header__inner">
     <!-- ヘッダーロゴ -->
@@ -21,23 +25,6 @@
         <span class="c-hamburger__line"></span>
       </button>
     </div>
-    <?php
-    $headerMenuUrls = [
-      ['title' => '事業紹介', 'url' => $urls['solution']],
-      ['title' => 'サステナビリティ', 'url' => $urls['sustainability']],
-      ['title' => 'お知らせ', 'url' => $urls['news']],
-      ['title' => '採用情報', 'url' => $urls['recruit']],
-      ['title' => 'お問い合わせ', 'url' => $urls['contact']],
-    ];
-    $subMenuUrls = [
-      ['title' => '私たちについて', 'url' => $urls['about']],
-      ['title' => '会社概要', 'url' => $urls['company']],
-      ['title' => '代表挨拶', 'url' => $urls['message']],
-      ['title' => '組織体制', 'url' => $urls['organization']],
-      ['title' => '役員紹介', 'url' => $urls['officer']],
-      ['title' => '沿革', 'url' => $urls['history']],
-    ];
-    ?>
     <!-- pcーメニュー -->
     <nav class="p-header__pc-menu p-header-menu ">
       <ul class="p-header-menu__items">

@@ -1,0 +1,26 @@
+@use '../../global' as *;
+
+.u-blurIn {
+  opacity: 0;
+  &.is_animate {
+    animation: blurIn 0.8s ease-in-out forwards;
+  }
+}
+
+.u-blurOut {
+  &.is_animate {
+    animation: blurOut 0.8s ease-in-out forwards;
+  }
+}
+
+.u-fadeIn {
+  opacity: 0;
+  &.is_animate {
+    animation: fadeIn 0.8s ease-in-out forwards;
+  }
+}
+.u-fadeOut {
+  &.is_animate {
+    animation: fadeOut 0.8s ease-in-out forwards;
+  }
+}

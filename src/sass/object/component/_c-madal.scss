@@ -5,7 +5,8 @@
   border: 5px solid var(--base-color);
   border-radius: 21px;
   width: min(1200px, 90vw);
-  height: 80vh;
+  height: auto;
+  max-height: 80vh;
   margin: auto;
 }
 
